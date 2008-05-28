@@ -1,20 +1,25 @@
 #!/usr/bin/perl -w
 
-# This script is a 5-minute-hack, so it's EXPERIMENTAL.
+# This script is a 10-minutes-hack, so it's EXPERIMENTAL.
+#
+# Works as you type, printing suggestions when Aspell thinks
+# your last word was misspelled.
 #
 # Known bugs:
-#  - won't catch all your mistakes
-#  - works for public messages only
+#  - won't catch all mistakes
+#  - works every time you press space or a dot (so won't work after
+#    tabcompletions and obviously won't work for last word before
+#    pressing enter unless you're using dot to finish your sentences)
 #  - all words will be marked and no suggestions given if 
-#    dictionary is missing
-#
+#    dictionary is missing (ie. wrong spellcheck_default_language)
+
 
 use strict;
 use vars qw($VERSION %IRSSI);
 use Irssi;
 use Text::Aspell;
 
-$VERSION = '0.1';
+$VERSION = '0.2';
 %IRSSI = (
     authors     => 'Jakub Jankowski',
     contact     => 'shasta@toxcorp.com',
@@ -36,11 +41,11 @@ sub spellcheck_setup
     return $speller{$_[0]}->get_option('lang');
 }
 
-sub spellcheck_check
+sub spellcheck_check_word
 {
-    my ($lang, $msg) = @_;
-    my $str = '';
+    my ($lang, $word) = @_;
     my $win = Irssi::active_win();
+    my @suggestions = ();
 
     # setup Text::Aspell for that lang if needed
     if (!exists $speller{$lang} || !defined $speller{$lang})
@@ -49,32 +54,18 @@ sub spellcheck_check
 	{
 	    $win->print("Error while setting up spellchecker for $lang");
 	    # don't change the message
-	    return $msg;
+	    return @suggestions;
 	}
     }
 
     # do the spellchecking
-    foreach my $word (split(' ', $msg))
+    my ($stripped) = $word =~ /([^[:punct:][:digit:]]{2,})/; # HAX
+    # Irssi::print("Debug: stripped $word is '$stripped' and lang is $lang");
+    if (defined $stripped && !$speller{$lang}->check($stripped))
     {
-	my ($stripped) = $word =~ /([^[:punct:][:digit:]]{2,})/; # at least 2 letters
-	# Irssi::print("Debug: stripped $word is $stripped");
-	if (!defined $stripped || $stripped =~ /^\d*$/ || $speller{$lang}->check($stripped))
-	{
-	    $str .= "$word ";
-	}
-	else
-	{
-	    my @suggestions = $speller{$lang}->suggest($stripped);
-	    # poor man's underline ;-)
-	    $str .= "_" . $word . "_ ";
-	    if (Irssi::settings_get_bool('spellcheck_print_suggestions'))
-	    {
-		$win->print("Suggestions for $word - " . join(" ", @suggestions));
-	    }
-	}
+        @suggestions = $speller{$lang}->suggest($stripped);
     }
-
-    return $str;
+    return @suggestions;
 }
 
 sub spellcheck_find_language
@@ -121,28 +112,46 @@ sub spellcheck_find_language
     return Irssi::settings_get_str('spellcheck_default_language');
 }
 
-sub own_public
-{ 
-    my ($server, $message, $target) = @_;
+sub spellcheck_key_pressed
+{
+    my ($key) = @_;
+    my $win = Irssi::active_win();
 
+    # it's impossible to modify the input line from perl
+    # so there's no way to mark misspelled words.
+    # that's why there's no spellcheck_print_suggestions anymore
+    # because printing suggestions is our only choice.
     return unless Irssi::settings_get_bool('spellcheck_enabled');
-    return unless (defined $server && defined $target && defined $message);
 
-    my $lang = spellcheck_find_language($server->{tag}, $target);
-    my $chk = spellcheck_check($lang, $message);
+    # don't bother unless pressed key is space
+    return unless (chr $key eq ' ' or chr $key eq '.');
 
-    # skip that signal magic if no spelling errors
-    return if ($chk eq $message);
+    # get current inputline
+    my $inputline = Irssi::parse_special('$L');
 
-    Irssi::signal_stop();
-    Irssi::signal_remove("message own_public", "own_public");
-    Irssi::signal_emit("message own_public", $server, $chk, $target);
-    Irssi::signal_add_first("message own_public", "own_public");
+    # check if inputline starts with any of cmdchars
+    # we shouldn't spellcheck commands
+    my $cmdchars = Irssi::settings_get_str('cmdchars');
+    my $re = qr/^[$cmdchars]/;
+    return if ($inputline =~ $re);
+
+    # get last bit from the inputline
+    my ($word) = $inputline =~ /\s*([^\s]+)$/;
+
+    # find appropriate language for current window item
+    my $lang = spellcheck_find_language($win->{active_server}->{tag}, $win->{active}->{name});
+
+    my @suggestions = spellcheck_check_word($lang, $word);
+    # Irssi::print("Debug: spellcheck_check_word($word) returned array of " . scalar @suggestions);
+    return if (scalar @suggestions == 0);
+
+    # we found a mistake, print suggestions
+    $win->print("Suggestions for $word - " . join(", ", @suggestions));
 }
 
+
 Irssi::settings_add_bool('spellcheck', 'spellcheck_enabled', 1);
-Irssi::settings_add_bool('spellcheck', 'spellcheck_print_suggestions', 1);
 Irssi::settings_add_str( 'spellcheck', 'spellcheck_default_language', 'en_US');
 Irssi::settings_add_str( 'spellcheck', 'spellcheck_languages', '');
 
-Irssi::signal_add_first("message own_public", "own_public");
+Irssi::signal_add_first('gui key pressed', 'spellcheck_key_pressed');
