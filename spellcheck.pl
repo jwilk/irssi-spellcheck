@@ -35,6 +35,7 @@
 #    the script to spit out lots of suggestions, and turning it
 #    off for a while is the easiest way. By default it's ON.
 #
+#  spellcheck_word_color  -- highlight misspelled word to this color
 #
 # BUGS:
 #  - won't catch all mistakes
@@ -188,7 +189,8 @@ sub spellcheck_key_pressed
 
     # we found a mistake, print suggestions
     $word =~ s/%/%%/g;
-    $win->print("Suggestions for $word - " . join(", ", @suggestions));
+    my $color = Irssi::settings_get_str('spellcheck_word_color');
+    $win->print("Suggestions for $color$word%N - " . join(", ", @suggestions));
 }
 
 
@@ -209,6 +211,7 @@ sub spellcheck_complete_word
 Irssi::settings_add_bool('spellcheck', 'spellcheck_enabled', 1);
 Irssi::settings_add_str( 'spellcheck', 'spellcheck_default_language', 'en_US');
 Irssi::settings_add_str( 'spellcheck', 'spellcheck_languages', '');
+Irssi::settings_add_str( 'spellcheck', 'spellcheck_word_color', '%R');
 
 Irssi::signal_add_first('gui key pressed', 'spellcheck_key_pressed');
 Irssi::signal_add_last('complete word', 'spellcheck_complete_word');
