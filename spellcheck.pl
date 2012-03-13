@@ -187,6 +187,7 @@ sub spellcheck_key_pressed
     return if (scalar @suggestions == 0);
 
     # we found a mistake, print suggestions
+    $word =~ s/%/%%/g;
     $win->print("Suggestions for $word - " . join(", ", @suggestions));
 }
 
