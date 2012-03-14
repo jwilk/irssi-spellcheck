@@ -1,5 +1,3 @@
-#!/usr/bin/perl -w
-
 # Copyright © 2008 Jakub Jankowski <shasta@toxcorp.com>
 # Copyright © 2012 Jakub Wilk <jwilk@jwilk.net>
 #
@@ -63,6 +61,8 @@
 #  - probably more, please report to $IRSSI{'contact'}
 
 use strict;
+use warnings;
+
 use vars qw($VERSION %IRSSI);
 use Irssi 20070804;
 use Text::Aspell;
