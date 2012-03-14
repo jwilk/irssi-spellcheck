@@ -22,9 +22,9 @@
 #
 # Description:
 #  Works as you type, printing suggestions when Aspell thinks
-#  your last word was misspelled. 
+#  your last word was misspelled.
 #  It also adds suggestions to the list of tabcompletions,
-#  so once you know last word is wrong, you can go back 
+#  so once you know last word is wrong, you can go back
 #  and tabcomplete through what Aspell suggests.
 #
 #
@@ -32,7 +32,7 @@
 #
 #  spellcheck_languages  -- a list of space and/or comma
 #    separated languages to use on certain networks/channels.
-#    Example: 
+#    Example:
 #    /set spellcheck_languages netA/#chan1/en_US, #chan2/fi_FI, netB/!chan3/pl_PL
 #    will use en_US for #chan1 on network netA, fi_FI for #chan2
 #    on every network, and pl_PL for !chan3 on network netB.
@@ -60,7 +60,7 @@
 #    you can't tabcomplete to the suggestions right away - you need
 #    to use backspace and then tabcomplete. With dot you get an extra
 #    space after tabcompletion.
-#  - all words will be marked and no suggestions given if 
+#  - all words will be marked and no suggestions given if
 #    dictionary is missing (ie. wrong spellcheck_default_language)
 #  - probably more, please report to $IRSSI{'contact'}
 
