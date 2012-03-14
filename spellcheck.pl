@@ -114,7 +114,6 @@ sub spellcheck_check_word
 
     # do the spellchecking
     my ($stripped, $rest) = $word =~ /([^[:punct:][:digit:]]{2,})(.*)/; # HAX
-    # Irssi::print("Debug: stripped $word is '$stripped', rest is '$rest'");
     if (defined $stripped && !$speller{$lang}->check($stripped))
     {
         push(@suggestions, $add_rest ? $_ . $rest : $_) for ($speller{$lang}->suggest($stripped));
@@ -140,7 +139,6 @@ sub spellcheck_find_language
     {
         # strip trailing slashes
         $langstr =~ s=/+$==;
-        # Irssi::print("Debug: checking network $network target $target against langstr $langstr");
         my ($s1, $s2, $s3) = split(/\//, $langstr, 3);
         my ($t, $c, $l);
         if (defined $s3 && $s3 ne '')
@@ -156,12 +154,10 @@ sub spellcheck_find_language
 
         if ($c eq $target && (!defined $t || $t eq $network))
         {
-            # Irssi::print("Debug: language found: $l");
             return $l;
         }
     }
 
-    # Irssi::print("Debug: language not found, using default");
     # no match, use defaults
     return Irssi::settings_get_str('spellcheck_default_language');
 }
@@ -195,7 +191,7 @@ sub spellcheck_key_pressed
     my $lang = spellcheck_find_language($win->{active_server}->{tag}, $win->{active}->{name});
 
     my @suggestions = spellcheck_check_word($lang, $word, 0);
-    # Irssi::print("Debug: spellcheck_check_word($word) returned array of " . scalar @suggestions);
+
     return if (scalar @suggestions == 0);
 
     # we found a mistake, print suggestions
