@@ -69,7 +69,7 @@ use vars qw($VERSION %IRSSI);
 use Irssi 20070804;
 use Text::Aspell;
 
-$VERSION = '0.4.7';
+$VERSION = '0.4.10';
 %IRSSI = (
     authors     => 'Jakub Wilk, Jakub Jankowski',
     contact     => 'jwilk@jwilk.net, shasta@toxcorp.com',
@@ -108,6 +108,9 @@ sub spellcheck_check_word
             return @suggestions;
         }
     }
+
+    return if $word =~ m{^\w+://}; # looks like an URL
+    return if $word =~ m{^[^@]+@[^@]+$}; # looks like an e-mail
 
     # do the spellchecking
     my ($stripped, $rest) = $word =~ /([^[:punct:][:digit:]]{2,})(.*)/; # HAX
