@@ -51,10 +51,6 @@
 #  - all words will be marked and no suggestions given if 
 #    dictionary is missing (ie. wrong spellcheck_default_language)
 #  - probably more, please report to $IRSSI{'contact'}
-#
-#
-# $Id: spellcheck.pl 5 2008-05-28 22:31:06Z shasta $
-#
 
 use strict;
 use vars qw($VERSION %IRSSI);
