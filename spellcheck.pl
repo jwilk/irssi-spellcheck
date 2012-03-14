@@ -101,12 +101,12 @@ sub spellcheck_check_word
     # setup Text::Aspell for that lang if needed
     if (!exists $speller{$lang} || !defined $speller{$lang})
     {
-	if (!spellcheck_setup($lang))
-	{
-	    $win->print("Error while setting up spellchecker for $lang");
-	    # don't change the message
-	    return @suggestions;
-	}
+        if (!spellcheck_setup($lang))
+        {
+            $win->print("Error while setting up spellchecker for $lang");
+            # don't change the message
+            return @suggestions;
+        }
     }
 
     # do the spellchecking
@@ -114,7 +114,7 @@ sub spellcheck_check_word
     # Irssi::print("Debug: stripped $word is '$stripped', rest is '$rest'");
     if (defined $stripped && !$speller{$lang}->check($stripped))
     {
-	push(@suggestions, $add_rest ? $_ . $rest : $_) for ($speller{$lang}->suggest($stripped));
+        push(@suggestions, $add_rest ? $_ . $rest : $_) for ($speller{$lang}->suggest($stripped));
     }
     return @suggestions;
 }
@@ -135,27 +135,27 @@ sub spellcheck_find_language
     my @languages = split(/[ ,]/, Irssi::settings_get_str('spellcheck_languages'));
     for my $langstr (@languages)
     {
-	# strip trailing slashes
-	$langstr =~ s=/+$==;
-	# Irssi::print("Debug: checking network $network target $target against langstr $langstr");
-	my ($s1, $s2, $s3) = split(/\//, $langstr, 3);
-	my ($t, $c, $l);
-	if (defined $s3 && $s3 ne '')
-	{
-	    # network/channel/lang
-	    $t = lc($s1); $c = lc($s2); $l = $s3;
-	}
-	else
-	{
-	    # channel/lang
-	    $c = lc($s1); $l = $s2;
-	}
+        # strip trailing slashes
+        $langstr =~ s=/+$==;
+        # Irssi::print("Debug: checking network $network target $target against langstr $langstr");
+        my ($s1, $s2, $s3) = split(/\//, $langstr, 3);
+        my ($t, $c, $l);
+        if (defined $s3 && $s3 ne '')
+        {
+            # network/channel/lang
+            $t = lc($s1); $c = lc($s2); $l = $s3;
+        }
+        else
+        {
+            # channel/lang
+            $c = lc($s1); $l = $s2;
+        }
 
-	if ($c eq $target && (!defined $t || $t eq $network))
-	{
-	    # Irssi::print("Debug: language found: $l");
-	    return $l;
-	}
+        if ($c eq $target && (!defined $t || $t eq $network))
+        {
+            # Irssi::print("Debug: language found: $l");
+            return $l;
+        }
     }
 
     # Irssi::print("Debug: language not found, using default");
@@ -223,3 +223,5 @@ Irssi::settings_add_str( 'spellcheck', 'spellcheck_word_color', '%R');
 
 Irssi::signal_add_first('gui key pressed', 'spellcheck_key_pressed');
 Irssi::signal_add_last('complete word', 'spellcheck_complete_word');
+
+# vim:ts=4 sw=4 et
