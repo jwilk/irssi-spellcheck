@@ -12,8 +12,6 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
 # General Public License for more details.
 
-# ** This script is a 10-minutes-hack, so it's EXPERIMENTAL. **
-#
 # Requires:
 #  - Irssi 0.8.12 or newer (http://irssi.org/).
 #  - GNU Aspell with appropriate dictionaries (http://aspell.net/).
