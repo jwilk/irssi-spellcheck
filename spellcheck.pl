@@ -1,5 +1,17 @@
 #!/usr/bin/perl -w
 
+# Copyright © 2008 Jakub Jankowski <shasta@toxcorp.com>
+# Copyright © 2012 Jakub Wilk <jwilk@jwilk.net>
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; version 2 dated June, 1991.
+#
+# This program is distributed in the hope that it will be useful, but
+# WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+# General Public License for more details.
+
 # ** This script is a 10-minutes-hack, so it's EXPERIMENTAL. **
 #
 # Requires:
@@ -59,12 +71,12 @@ use Text::Aspell;
 
 $VERSION = '0.3';
 %IRSSI = (
-    authors     => 'Jakub Jankowski',
-    contact     => 'shasta@toxcorp.com',
+    authors     => 'Jakub Wilk, Jakub Jankowski',
+    contact     => 'jwilk@jwilk.net, shasta@toxcorp.com',
     name        => 'Spellcheck',
     description => 'Checks for spelling errors using Aspell.',
     license     => 'GPLv2',
-    url         => 'http://toxcorp.com/irc/irssi/spellcheck/',
+    url         => 'https://bitbucket.org/jwilk/irssi-spellcheck',
 );
 
 my %speller;
