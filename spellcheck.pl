@@ -184,6 +184,7 @@ sub spellcheck_key_pressed
 
     # get last bit from the inputline
     my ($word) = $inputline =~ /\s*([^\s]+)$/;
+    defined $word or return;
 
     # find appropriate language for current window item
     my $lang = spellcheck_find_language($win->{active_server}->{tag}, $win->{active}->{name});
