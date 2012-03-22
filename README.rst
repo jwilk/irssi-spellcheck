@@ -6,8 +6,8 @@ Requires
 ~~~~~~~~
 
 * `Irssi`_ 0.8.12 or newer
-* `GNU Aspell`_ with appropriate dictionaries ().
-* Perl module `Text::Aspell`_ (available from CPAN).
+* `GNU Aspell`_ with appropriate dictionaries
+* Perl module `Text::Aspell`_
 
 .. _Irssi:
    http://irssi.org/
