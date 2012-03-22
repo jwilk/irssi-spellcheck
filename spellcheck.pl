@@ -17,7 +17,7 @@ use vars qw($VERSION %IRSSI);
 use Irssi 20070804;
 use Text::Aspell;
 
-$VERSION = '0.4.20';
+$VERSION = '0.4.21';
 %IRSSI = (
     authors     => 'Jakub Wilk, Jakub Jankowski',
     contact     => 'jwilk@jwilk.net, shasta@toxcorp.com',
@@ -39,7 +39,7 @@ sub spellcheck_setup
 }
 
 # add_rest means "add (whatever you chopped from the word before
-# spellchecking it) to the suggestions returned"
+# spell-checking it) to the suggestions returned"
 sub spellcheck_check_word
 {
     my ($lang, $word, $add_rest) = @_;
@@ -52,7 +52,7 @@ sub spellcheck_check_word
     {
         if (!spellcheck_setup($lang))
         {
-            $win->print("Error while setting up spellchecker for $lang");
+            $win->print("Error while setting up spell-checker for $lang");
             # don't change the message
             return;
         }
@@ -139,7 +139,7 @@ sub spellcheck_key_pressed
     my $inputline = Irssi::parse_special('$L');
 
     # check if inputline starts with any of cmdchars
-    # we shouldn't spellcheck commands
+    # we shouldn't spell-check commands
     my $cmdchars = Irssi::settings_get_str('cmdchars');
     my $re = qr/^[$cmdchars]/;
     return if ($inputline =~ $re);
