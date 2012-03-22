@@ -94,7 +94,8 @@ sub spellcheck_check_word
 {
     my ($lang, $word, $add_rest) = @_;
     my $win = Irssi::active_win();
-    my @suggestions = ();
+    my $prefix = '';
+    my $suffix = '';
 
     # setup Text::Aspell for that lang if needed
     if (!exists $speller{$lang} || !defined $speller{$lang})
@@ -103,20 +104,24 @@ sub spellcheck_check_word
         {
             $win->print("Error while setting up spellchecker for $lang");
             # don't change the message
-            return @suggestions;
+            return;
         }
     }
 
+    return if $word =~ m{^/}; # looks like a path
+    $word =~ s/^([[:punct:]]*)//; # strip leading punctuation characters
+    $prefix = $1 if $add_rest;
+    $word =~ s/([[:punct:]]*)$//; # ...and trailing ones, too
+    $suffix = $1 if $add_rest;
     return if $word =~ m{^\w+://}; # looks like an URL
     return if $word =~ m{^[^@]+@[^@]+$}; # looks like an e-mail
 
-    # do the spellchecking
-    my ($stripped, $rest) = $word =~ /([^[:punct:][:digit:]]{2,})(.*)/; # HAX
-    if (defined $stripped && !$speller{$lang}->check($stripped))
+    unless ($speller{$lang}->check($word))
     {
-        push(@suggestions, $add_rest ? $_ . $rest : $_) for ($speller{$lang}->suggest($stripped));
+        my @result =  map { "$prefix$_$suffix" } $speller{$lang}->suggest($word);
+        return \@result;
     }
-    return @suggestions;
+    return;
 }
 
 sub spellcheck_find_language
@@ -189,14 +194,21 @@ sub spellcheck_key_pressed
     # find appropriate language for current window item
     my $lang = spellcheck_find_language($win->{active_server}->{tag}, $win->{active}->{name});
 
-    my @suggestions = spellcheck_check_word($lang, $word, 0);
+    my $suggestions = spellcheck_check_word($lang, $word, 0);
 
-    return if (scalar @suggestions == 0);
+    return unless defined $suggestions;
 
     # we found a mistake, print suggestions
     $word =~ s/%/%%/g;
     my $color = Irssi::settings_get_str('spellcheck_word_color');
-    $win->print("Suggestions for $color$word%N - " . join(", ", @suggestions));
+    if (scalar @$suggestions > 0)
+    {
+        $win->print("Suggestions for $color$word%N - " . join(", ", @$suggestions));
+    }
+    else
+    {
+        $win->print("No suggestions for $color$word%N");
+    }
 }
 
 
@@ -210,7 +222,8 @@ sub spellcheck_complete_word
     my $lang = spellcheck_find_language($win->{active_server}->{tag}, $win->{active}->{name});
 
     # add suggestions to the completion list
-    push(@$complist, spellcheck_check_word($lang, $word, 1));
+    my $suggestions = spellcheck_check_word($lang, $word, 1);
+    push(@$complist, @$suggestions) if defined $suggestions;
 }
 
 
