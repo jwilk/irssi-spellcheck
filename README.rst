@@ -33,7 +33,7 @@ Settings
   ``netA``, ``fi_FI`` for ``#chan2`` on every network, and ``pl_PL`` for
   ``!chan3`` on network ``netB``. By default this setting is empty.
 * ``spellcheck_default_language`` — language to use in empty windows,
-  or when nothing from spellcheck_languages matches. Defaults to
+  or when nothing from ``spellcheck_languages`` matches. Defaults to
   ``en_US``.
 * ``spellcheck_enabled`` [``ON``/``OFF``] — self explaining. Sometimes
   (like when pasting foreign-language text) you don't want the script to
