@@ -54,8 +54,6 @@ Bugs
   tab-complete to the suggestions right away - you need to use backspace
   and then tab-complete. With dot you get an extra space after
   tab-completion.
-* all words will be marked and no suggestions given if dictionary is
-  missing (ie. wrong ``spellcheck_default_language``)
 * probably more, please report to ``$IRSSI{'contact'}``
 
 .. vim:ts=3 sw=3 et tw=72

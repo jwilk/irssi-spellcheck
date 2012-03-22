@@ -17,7 +17,7 @@ use vars qw($VERSION %IRSSI);
 use Irssi 20070804;
 use Text::Aspell;
 
-$VERSION = '0.4.17';
+$VERSION = '0.4.20';
 %IRSSI = (
     authors     => 'Jakub Wilk, Jakub Jankowski',
     contact     => 'jwilk@jwilk.net, shasta@toxcorp.com',
@@ -67,7 +67,13 @@ sub spellcheck_check_word
     return if $word =~ m{^[^@]+@[^@]+$}; # looks like an e-mail
     return if $word =~ m{^[[:digit:][:punct:]]+$}; # looks like a number
 
-    unless ($speller{$lang}->check($word))
+    my $ok = $speller{$lang}->check($word);
+    if (not defined $ok)
+    {
+        $win->print("Error while spell-checking for $lang");
+        return;
+    }
+    unless ($ok)
     {
         my @result =  map { "$prefix$_$suffix" } $speller{$lang}->suggest($word);
         return \@result;
