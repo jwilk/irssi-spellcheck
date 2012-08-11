@@ -1,0 +1,27 @@
+irssi-spellcheck (0.4.21) UNRELEASED; urgency=low
+
+  * New maintainer.
+    + Add explicit copyright and license statement.
+    + Update the %IRSSI hash with new contact information.
+  * Include the full license text in the tarball.
+  * Tidy up the source.
+    + Remove the “$Id: … $” marker, as it's no longer meaningful.
+    + Use tabs instead of spaces.
+    + Remove some commented out debug statements.
+    + Remove a comment saying it's a “10-minutes hack”.
+    + Use “use warnings”.
+    + Remove the shebang, as the module is not meant to be used as a script.
+    + Move documentation into a separate file.
+  * Escape % characters when printing misspelled word.
+  * Print misspelled words using a distinctive color (default: red).
+  * Don't spell-check URLs.
+  * Don't spell-check e-mails.
+  * Don't spell-check numbers.
+  * Fix “Use of uninitialized value …” on lines containing only whitespace.
+  * Re-implement the tokenizer. Show a warning message also when the word is
+    misspelled so badly there were no suggestions.
+  * Show a useful error message if spell-checking fails (e.g. because
+    dictionary is missing).
+  * Replace “spellcheck” with “spell-check” in a few places.
+
+ -- Jakub Wilk <jwilk@jwilk.net>  Sat, 11 Aug 2012 11:24:29 +0200
