@@ -54,6 +54,6 @@ Bugs
   tab-complete to the suggestions right away - you need to use backspace
   and then tab-complete. With dot you get an extra space after
   tab-completion.
-* probably more, please report to ``$IRSSI{'contact'}``
+* probably more, please report to `Jakub Wilk <jwilk@jwilk.net>`_
 
 .. vim:ts=3 sw=3 et tw=72
