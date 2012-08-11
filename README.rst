@@ -44,16 +44,16 @@ Settings
 Bugs
 ~~~~
 
-* it won't catch all mistakes
-* picking actual words from what you type is very kludgy, you may
+* It won't catch all mistakes.
+* Picking actual words from what you type is very kludgy, you may
   occasionally see some leftovers like digits or punctuation
-* works every time you press space or a dot (so won't work for the last
+* Works every time you press space or a dot (so won't work for the last
   word before pressing enter, unless you're using dot to finish your
-  sentences)
-* when you press space and realize that the word is wrong, you can't
+  sentences).
+* When you press space and realize that the word is wrong, you can't
   tab-complete to the suggestions right away - you need to use backspace
   and then tab-complete. With dot you get an extra space after
   tab-completion.
-* probably more, please report to `Jakub Wilk <jwilk@jwilk.net>`_
+* Probably more, please report to `Jakub Wilk <jwilk@jwilk.net>`_.
 
 .. vim:ts=3 sw=3 et tw=72
