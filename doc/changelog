@@ -1,4 +1,4 @@
-irssi-spellcheck (0.4.21) UNRELEASED; urgency=low
+irssi-spellcheck (0.5) unstable; urgency=low
 
   * New maintainer.
     + Add explicit copyright and license statement.
@@ -24,4 +24,4 @@ irssi-spellcheck (0.4.21) UNRELEASED; urgency=low
     dictionary is missing).
   * Replace “spellcheck” with “spell-check” in a few places.
 
- -- Jakub Wilk <jwilk@jwilk.net>  Sat, 11 Aug 2012 11:24:29 +0200
+ -- Jakub Wilk <jwilk@jwilk.net>  Sat, 11 Aug 2012 17:45:48 +0200
