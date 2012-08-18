@@ -127,10 +127,16 @@ sub spellcheck_key_pressed
     my ($key) = @_;
     my $win = Irssi::active_win();
 
+    my $correction_window = Irssi::window_find_name('corrections');
+
     # I know no way to *mark* misspelled words in the input line,
     # that's why there's no spellcheck_print_suggestions -
     # because printing suggestions is our only choice.
     return unless Irssi::settings_get_bool('spellcheck_enabled');
+
+    # hide correction window when message is sent
+    if ($key eq 10 && $correction_window)
+    	{ $correction_window->command('window hide corrections'); }
 
     # don't bother unless pressed key is space or dot
     return unless (chr $key eq ' ' or chr $key eq '.');
@@ -155,16 +161,29 @@ sub spellcheck_key_pressed
 
     return unless defined $suggestions;
 
+    # show corrections window if hidden
+    if ($correction_window)
+    {
+	    $win->command('window show corrections');
+	    $correction_window->command('window stick off');
+	    $correction_window->command('window size 10');
+    }
+    else
+    {
+	    $correction_window = $win;
+    }
+
     # we found a mistake, print suggestions
+
     $word =~ s/%/%%/g;
     my $color = Irssi::settings_get_str('spellcheck_word_color');
     if (scalar @$suggestions > 0)
     {
-        $win->print("Suggestions for $color$word%N - " . join(", ", @$suggestions));
+        $correction_window->print("Suggestions for $color$word%N - " . join(", ", @$suggestions));
     }
     else
     {
-        $win->print("No suggestions for $color$word%N");
+        $correction_window->print("No suggestions for $color$word%N");
     }
 }
 
@@ -172,6 +191,7 @@ sub spellcheck_key_pressed
 sub spellcheck_complete_word
 {
     my ($complist, $win, $word, $lstart, $wantspace) = @_;
+
 
     return unless Irssi::settings_get_bool('spellcheck_enabled');
 
