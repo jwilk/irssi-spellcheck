@@ -1,5 +1,10 @@
 irssi-spellcheck (0.5) unstable; urgency=low
 
+  * New contributor
+    + add info in copyright and authors
+  * Split for correction feature
+    + show and use the "corrections" windows in a split to show suggestions,
+    if available, instead of the discussion window
   * New maintainer.
     + Add explicit copyright and license statement.
     + Update the %IRSSI hash with new contact information.

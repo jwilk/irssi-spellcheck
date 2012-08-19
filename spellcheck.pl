@@ -1,5 +1,6 @@
 # Copyright © 2008 Jakub Jankowski <shasta@toxcorp.com>
 # Copyright © 2012 Jakub Wilk <jwilk@jwilk.net>
+# Copyright © 2012 Gabriel Pettier <gabriel.pettier@gmail.com>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -19,7 +20,7 @@ use Text::Aspell;
 
 $VERSION = '0.5';
 %IRSSI = (
-    authors     => 'Jakub Wilk, Jakub Jankowski',
+    authors     => 'Jakub Wilk, Jakub Jankowski, Gabriel Pettier',
     contact     => 'jwilk@jwilk.net, shasta@toxcorp.com',
     name        => 'Spellcheck',
     description => 'Checks for spelling errors using Aspell.',
