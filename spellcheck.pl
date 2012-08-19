@@ -18,7 +18,7 @@ use vars qw($VERSION %IRSSI);
 use Irssi 20070804;
 use Text::Aspell;
 
-$VERSION = '0.5';
+$VERSION = '0.6';
 %IRSSI = (
     authors     => 'Jakub Wilk, Jakub Jankowski, Gabriel Pettier',
     contact     => 'jwilk@jwilk.net, shasta@toxcorp.com',

@@ -1,10 +1,18 @@
-irssi-spellcheck (0.5) unstable; urgency=low
+irssi-spellcheck (0.6) UNRELEASED; urgency=low
 
+  * Settings for correction windows
+    + add spellcheck_window_name to declare which window to use, if any
+    + add spellcheck_window_height to declare height for the used window
   * New contributor
     + add info in copyright and authors
   * Split for correction feature
     + show and use the "corrections" windows in a split to show suggestions,
     if available, instead of the discussion window
+
+ -- Jakub Wilk <jwilk@jwilk.net>  Sun, 19 Aug 2012 11:05:31 +0200
+
+irssi-spellcheck (0.5) unstable; urgency=low
+
   * New maintainer.
     + Add explicit copyright and license statement.
     + Update the %IRSSI hash with new contact information.
