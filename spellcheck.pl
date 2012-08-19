@@ -128,7 +128,15 @@ sub spellcheck_key_pressed
     my ($key) = @_;
     my $win = Irssi::active_win();
 
-    my $correction_window = Irssi::window_find_name('corrections');
+    my $correction_window;
+    my $window_height;
+
+    my $window_name = Irssi::settings_get_str('spellcheck_window_name');
+    if ($window_name ne '')
+    {
+	    $correction_window = Irssi::window_find_name($window_name);
+	    $window_height = Irssi::settings_get_str('spellcheck_window_height');
+    }
 
     # I know no way to *mark* misspelled words in the input line,
     # that's why there's no spellcheck_print_suggestions -
@@ -165,9 +173,9 @@ sub spellcheck_key_pressed
     # show corrections window if hidden
     if ($correction_window)
     {
-	    $win->command('window show corrections');
+	    $win->command("window show $window_name");
 	    $correction_window->command('window stick off');
-	    $correction_window->command('window size 10');
+	    $correction_window->command("window size $window_height");
     }
     else
     {
@@ -193,7 +201,6 @@ sub spellcheck_complete_word
 {
     my ($complist, $win, $word, $lstart, $wantspace) = @_;
 
-
     return unless Irssi::settings_get_bool('spellcheck_enabled');
 
     # find appropriate language for the current window item
@@ -209,6 +216,8 @@ Irssi::settings_add_bool('spellcheck', 'spellcheck_enabled', 1);
 Irssi::settings_add_str( 'spellcheck', 'spellcheck_default_language', 'en_US');
 Irssi::settings_add_str( 'spellcheck', 'spellcheck_languages', '');
 Irssi::settings_add_str( 'spellcheck', 'spellcheck_word_color', '%R');
+Irssi::settings_add_str( 'spellcheck', 'spellcheck_window_name', '');
+Irssi::settings_add_str( 'spellcheck', 'spellcheck_window_height', 10);
 
 Irssi::signal_add_first('gui key pressed', 'spellcheck_key_pressed');
 Irssi::signal_add_last('complete word', 'spellcheck_complete_word');
