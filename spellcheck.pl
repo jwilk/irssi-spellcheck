@@ -203,7 +203,28 @@ sub spellcheck_complete_word
     push(@$complist, @$suggestions) if defined $suggestions;
 }
 
+sub add_word
+{
+    my $win = Irssi::active_win();
+    my ($cmd_line, $server, $win_item) = @_;
+    my @args = split(' ', $cmd_line);
 
+    if (@args <= 0) {
+        $win->print("ADDWORD <word>        add word(s) to personal dictionary");
+        return;
+    }
+
+    # find appropriate language for current window item
+    my $lang = spellcheck_find_language($win->{active_server}->{tag}, $win->{active}->{name});
+    $win->print("Adding @args");
+    for my $word (@args)
+    {
+        $speller{$lang}->add_to_personal($word);
+    }
+    $speller{$lang}->save_all_word_lists();
+}
+
+Irssi::command_bind('addword', 'add_word');
 Irssi::settings_add_bool('spellcheck', 'spellcheck_enabled', 1);
 Irssi::settings_add_str( 'spellcheck', 'spellcheck_default_language', 'en_US');
 Irssi::settings_add_str( 'spellcheck', 'spellcheck_languages', '');
