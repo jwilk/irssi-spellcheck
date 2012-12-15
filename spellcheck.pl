@@ -187,7 +187,6 @@ sub spellcheck_key_pressed
     }
 }
 
-
 sub spellcheck_complete_word
 {
     my ($complist, $win, $word, $lstart, $wantspace) = @_;
