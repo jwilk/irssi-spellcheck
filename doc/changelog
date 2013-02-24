@@ -11,7 +11,10 @@ irssi-spellcheck (0.6) UNRELEASED; urgency=low
   [ Brian C. Lane ]
   * Add a command to adds words to personal dictionary.
 
- -- Jakub Wilk <jwilk@jwilk.net>  Sun, 24 Feb 2013 13:11:30 +0100
+  [ Jakub Wilk ]
+  * Document the split window feature.
+
+ -- Jakub Wilk <jwilk@jwilk.net>  Sun, 24 Feb 2013 13:53:39 +0100
 
 irssi-spellcheck (0.5) unstable; urgency=low
 

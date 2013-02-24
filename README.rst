@@ -41,6 +41,21 @@ Settings
   easiest way. By default it's ``ON``.
 * ``spellcheck_word_color`` — highlight misspelled word to this color.
 
+Corrections in a split window
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+As an experimental feature, it is possible to display corrections in a
+separate split window:
+
+* ``spellcheck_window_name`` - name of the window.
+* ``spellcheck_window_height`` - height of the window.
+
+It's user's responsibility to create the window::
+
+   /WINDOW NEW SPLIT
+   /WINDOW NAME <name>
+   /WINDOW STICK OFF
+   /WINDOW HIDE
+
 Bugs
 ~~~~
 
