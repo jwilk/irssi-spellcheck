@@ -1,14 +1,12 @@
 irssi-spellcheck (0.6) UNRELEASED; urgency=low
 
   [ Gabriel Pettier ]
-  * Settings for correction windows
-    + add spellcheck_window_name to declare which window to use, if any
-    + add spellcheck_window_height to declare height for the used window
-  * New contributor
-    + add info in copyright and authors
-  * Split for correction feature
-    + show and use the "corrections" windows in a split to show suggestions,
-    if available, instead of the discussion window
+  * New contributor.
+    + Add info in copyright and authors.
+  * New experimental feature: use a separate split window to display
+    spelling suggestions. Add the following variables:
+    + spellcheck_window_name to declare which window to use, if any;
+    + spellcheck_window_height to declare height for the window.
 
   [ Brian C. Lane ]
   * Add a command to adds words to personal dictionary.
