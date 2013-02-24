@@ -134,8 +134,8 @@ sub spellcheck_key_pressed
     my $window_name = Irssi::settings_get_str('spellcheck_window_name');
     if ($window_name ne '')
     {
-	    $correction_window = Irssi::window_find_name($window_name);
-	    $window_height = Irssi::settings_get_str('spellcheck_window_height');
+        $correction_window = Irssi::window_find_name($window_name);
+        $window_height = Irssi::settings_get_str('spellcheck_window_height');
     }
 
     # I know no way to *mark* misspelled words in the input line,
@@ -175,13 +175,13 @@ sub spellcheck_key_pressed
     # show corrections window if hidden
     if ($correction_window)
     {
-	    $win->command("window show $window_name");
-	    $correction_window->command('window stick off');
-	    $correction_window->command("window size $window_height");
+        $win->command("window show $window_name");
+        $correction_window->command('window stick off');
+        $correction_window->command("window size $window_height");
     }
     else
     {
-	    $correction_window = $win;
+        $correction_window = $win;
     }
 
     # we found a mistake, print suggestions
