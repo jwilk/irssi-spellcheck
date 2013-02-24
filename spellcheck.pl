@@ -145,7 +145,9 @@ sub spellcheck_key_pressed
 
     # hide correction window when message is sent
     if ($key eq 10 && $correction_window)
-    	{ $correction_window->command('window hide corrections'); }
+    {
+        $correction_window->command("window hide $window_name");
+    }
 
     # don't bother unless pressed key is space or dot
     return unless (chr $key eq ' ' or chr $key eq '.');
