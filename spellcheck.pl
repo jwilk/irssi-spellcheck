@@ -21,8 +21,8 @@ use Text::Aspell;
 $VERSION = '0.6';
 %IRSSI = (
     authors     => 'Jakub Wilk, Jakub Jankowski, Gabriel Pettier',
-    name        => 'Spellcheck',
-    description => 'Checks for spelling errors using Aspell.',
+    name        => 'spellcheck',
+    description => 'checks for spelling errors using Aspell',
     license     => 'GPLv2',
     url         => 'https://bitbucket.org/jwilk/irssi-spellcheck',
 );
