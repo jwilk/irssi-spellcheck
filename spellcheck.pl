@@ -230,7 +230,10 @@ sub add_word
     {
         $speller{$lang}->add_to_personal($word);
     }
-    $speller{$lang}->save_all_word_lists();
+    my $ok = $speller{$lang}->save_all_word_lists();
+    if (not $ok) {
+        $win->print("Error while saving $lang personal dictionary");
+    }
 }
 
 Irssi::command_bind('spellcheck_add', 'add_word');
