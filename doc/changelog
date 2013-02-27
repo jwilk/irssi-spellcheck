@@ -17,8 +17,10 @@ irssi-spellcheck (0.6) UNRELEASED; urgency=low
   * Refactor the language-choosing code.
   * Change the code indentation, for consistency with some new code and to
     save some vertical space.
+  * Remove the “contact” field from the header; keeping it up-to-date was
+    inconvenient.
 
- -- Jakub Wilk <jwilk@jwilk.net>  Wed, 27 Feb 2013 23:22:11 +0100
+ -- Jakub Wilk <jwilk@jwilk.net>  Wed, 27 Feb 2013 23:23:58 +0100
 
 irssi-spellcheck (0.5) unstable; urgency=low
 
