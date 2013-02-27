@@ -15,8 +15,10 @@ irssi-spellcheck (0.6) UNRELEASED; urgency=low
   * Document the split window feature.
   * Improve error handling.
   * Refactor the language-choosing code.
+  * Change the code indentation, for consistency with some new code and to
+    save some vertical space.
 
- -- Jakub Wilk <jwilk@jwilk.net>  Wed, 27 Feb 2013 23:01:04 +0100
+ -- Jakub Wilk <jwilk@jwilk.net>  Wed, 27 Feb 2013 23:22:11 +0100
 
 irssi-spellcheck (0.5) unstable; urgency=low
 

@@ -67,13 +67,11 @@ sub spellcheck_check_word
     return if $word =~ m{^[[:digit:][:punct:]]+$}; # looks like a number
 
     my $ok = $speller{$lang}->check($word);
-    if (not defined $ok)
-    {
+    if (not defined $ok) {
         $win->print('%R' . "Error while spell-checking for $lang" . '%N', MSGLEVEL_CLIENTERROR);
         return;
     }
-    unless ($ok)
-    {
+    unless ($ok) {
         my @result =  map { "$prefix$_$suffix" } $speller{$lang}->suggest($word);
         return \@result;
     }
@@ -94,25 +92,20 @@ sub _spellcheck_find_language
 
     # possible settings: network/channel/lang  or  channel/lang
     my @languages = split(/[ ,]/, Irssi::settings_get_str('spellcheck_languages'));
-    for my $langstr (@languages)
-    {
+    for my $langstr (@languages) {
         # strip trailing slashes
         $langstr =~ s=/+$==;
         my ($s1, $s2, $s3) = split(/\//, $langstr, 3);
         my ($t, $c, $l);
-        if (defined $s3 && $s3 ne '')
-        {
+        if (defined $s3 && $s3 ne '') {
             # network/channel/lang
             $t = lc($s1); $c = lc($s2); $l = $s3;
-        }
-        else
-        {
+        } else {
             # channel/lang
             $c = lc($s1); $l = $s2;
         }
 
-        if ($c eq $target && (!defined $t || $t eq $network))
-        {
+        if ($c eq $target && (!defined $t || $t eq $network)) {
             return $l;
         }
     }
@@ -139,8 +132,7 @@ sub spellcheck_key_pressed
     my $window_height;
 
     my $window_name = Irssi::settings_get_str('spellcheck_window_name');
-    if ($window_name ne '')
-    {
+    if ($window_name ne '') {
         $correction_window = Irssi::window_find_name($window_name);
         $window_height = Irssi::settings_get_str('spellcheck_window_height');
     }
@@ -151,8 +143,7 @@ sub spellcheck_key_pressed
     return unless Irssi::settings_get_bool('spellcheck_enabled');
 
     # hide correction window when message is sent
-    if ($key eq 10 && $correction_window)
-    {
+    if ($key eq 10 && $correction_window) {
         $correction_window->command("window hide $window_name");
     }
 
@@ -179,14 +170,11 @@ sub spellcheck_key_pressed
     return unless defined $suggestions;
 
     # show corrections window if hidden
-    if ($correction_window)
-    {
+    if ($correction_window) {
         $win->command("window show $window_name");
         $correction_window->command('window stick off');
         $correction_window->command("window size $window_height");
-    }
-    else
-    {
+    } else {
         $correction_window = $win;
     }
 
@@ -194,12 +182,9 @@ sub spellcheck_key_pressed
 
     $word =~ s/%/%%/g;
     my $color = Irssi::settings_get_str('spellcheck_word_color');
-    if (scalar @$suggestions > 0)
-    {
+    if (scalar @$suggestions > 0) {
         $correction_window->print("Suggestions for $color$word%N - " . join(", ", @$suggestions));
-    }
-    else
-    {
+    } else {
         $correction_window->print("No suggestions for $color$word%N");
     }
 }
@@ -237,8 +222,7 @@ sub add_word
     }
 
     $win->print("Adding to $lang dictionary: @args");
-    for my $word (@args)
-    {
+    for my $word (@args) {
         $speller{$lang}->add_to_personal($word);
     }
     my $ok = $speller{$lang}->save_all_word_lists();
