@@ -80,7 +80,7 @@ sub spellcheck_check_word
     return;
 }
 
-sub spellcheck_find_language
+sub _spellcheck_find_language
 {
     my ($network, $target) = @_;
     return Irssi::settings_get_str('spellcheck_default_language') unless (defined $network && defined $target);
@@ -119,6 +119,15 @@ sub spellcheck_find_language
 
     # no match, use defaults
     return Irssi::settings_get_str('spellcheck_default_language');
+}
+
+sub spellcheck_find_language
+{
+    my ($win) = @_;
+    return _spellcheck_find_language(
+        $win->{active_server}->{tag},
+        $win->{active}->{name}
+    );
 }
 
 sub spellcheck_key_pressed
@@ -163,8 +172,7 @@ sub spellcheck_key_pressed
     my ($word) = $inputline =~ /\s*([^\s]+)$/;
     defined $word or return;
 
-    # find appropriate language for current window item
-    my $lang = spellcheck_find_language($win->{active_server}->{tag}, $win->{active}->{name});
+    my $lang = spellcheck_find_language($win);
 
     my $suggestions = spellcheck_check_word($lang, $word, 0);
 
@@ -202,8 +210,7 @@ sub spellcheck_complete_word
 
     return unless Irssi::settings_get_bool('spellcheck_enabled');
 
-    # find appropriate language for the current window item
-    my $lang = spellcheck_find_language($win->{active_server}->{tag}, $win->{active}->{name});
+    my $lang = spellcheck_find_language($win);
 
     # add suggestions to the completion list
     my $suggestions = spellcheck_check_word($lang, $word, 1);
@@ -221,8 +228,7 @@ sub add_word
         return;
     }
 
-    # find appropriate language for current window item
-    my $lang = spellcheck_find_language($win->{active_server}->{tag}, $win->{active}->{name});
+    my $lang = spellcheck_find_language($win);
 
     my $speller = spellcheck_setup($lang);
     if (not defined $speller) {
