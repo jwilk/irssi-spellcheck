@@ -32,11 +32,14 @@ my %speller;
 
 sub spellcheck_setup
 {
-    return if (exists $speller{$_[0]} && defined $speller{$_[0]});
-    $speller{$_[0]} = Text::Aspell->new or return undef;
-    $speller{$_[0]}->set_option('lang', $_[0]) or return undef;
-    $speller{$_[0]}->set_option('sug-mode', 'fast') or return undef;
-    return 1;
+    my ($lang) = @_;
+    my $speller = $speller{$lang};
+    return $speller if defined $speller;
+    $speller = Text::Aspell->new or return;
+    $speller->set_option('lang', $_[0]) or return;
+    $speller->set_option('sug-mode', 'fast') or return;
+    $speller{$lang} = $speller;
+    return $speller;
 }
 
 # add_rest means "add (whatever you chopped from the word before
@@ -48,15 +51,10 @@ sub spellcheck_check_word
     my $prefix = '';
     my $suffix = '';
 
-    # setup Text::Aspell for that lang if needed
-    if (!exists $speller{$lang} || !defined $speller{$lang})
-    {
-        if (!spellcheck_setup($lang))
-        {
-            $win->print("Error while setting up spell-checker for $lang");
-            # don't change the message
-            return;
-        }
+    my $speller = spellcheck_setup($lang);
+    if (not defined $speller) {
+        $win->print('%R' . "Error while setting up spell-checker for $lang" . '%N', MSGLEVEL_CLIENTERROR);
+        return;
     }
 
     return if $word =~ m{^/}; # looks like a path
@@ -71,7 +69,7 @@ sub spellcheck_check_word
     my $ok = $speller{$lang}->check($word);
     if (not defined $ok)
     {
-        $win->print("Error while spell-checking for $lang");
+        $win->print('%R' . "Error while spell-checking for $lang" . '%N', MSGLEVEL_CLIENTERROR);
         return;
     }
     unless ($ok)
@@ -225,14 +223,21 @@ sub add_word
 
     # find appropriate language for current window item
     my $lang = spellcheck_find_language($win->{active_server}->{tag}, $win->{active}->{name});
-    $win->print("Adding to $lang personal dictionary: @args");
+
+    my $speller = spellcheck_setup($lang);
+    if (not defined $speller) {
+        $win->print('%R' . "Error while setting up spell-checker for $lang" . '%N', MSGLEVEL_CLIENTERROR);
+        return;
+    }
+
+    $win->print("Adding to $lang dictionary: @args");
     for my $word (@args)
     {
         $speller{$lang}->add_to_personal($word);
     }
     my $ok = $speller{$lang}->save_all_word_lists();
     if (not $ok) {
-        $win->print("Error while saving $lang personal dictionary");
+        $win->print('%R' . "Error while saving $lang dictionary" . '%N', MSGLEVEL_CLIENTERROR);
     }
 }
 
