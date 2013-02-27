@@ -219,13 +219,13 @@ sub add_word
     my @args = split(' ', $cmd_line);
 
     if (@args <= 0) {
-        $win->print("ADDWORD <word>        add word(s) to personal dictionary");
+        $win->print("SPELLCHECK_ADD <word>...    add word(s) to personal dictionary");
         return;
     }
 
     # find appropriate language for current window item
     my $lang = spellcheck_find_language($win->{active_server}->{tag}, $win->{active}->{name});
-    $win->print("Adding @args");
+    $win->print("Adding to $lang personal dictionary: @args");
     for my $word (@args)
     {
         $speller{$lang}->add_to_personal($word);
@@ -233,7 +233,7 @@ sub add_word
     $speller{$lang}->save_all_word_lists();
 }
 
-Irssi::command_bind('addword', 'add_word');
+Irssi::command_bind('spellcheck_add', 'add_word');
 Irssi::settings_add_bool('spellcheck', 'spellcheck_enabled', 1);
 Irssi::settings_add_str( 'spellcheck', 'spellcheck_default_language', 'en_US');
 Irssi::settings_add_str( 'spellcheck', 'spellcheck_languages', '');
