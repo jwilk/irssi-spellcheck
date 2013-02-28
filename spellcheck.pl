@@ -201,7 +201,7 @@ sub spellcheck_complete_word
     push(@$complist, @$suggestions) if defined $suggestions;
 }
 
-sub add_word
+sub spellcheck_add_word
 {
     my $win = Irssi::active_win();
     my ($cmd_line, $server, $win_item) = @_;
@@ -230,7 +230,8 @@ sub add_word
     }
 }
 
-Irssi::command_bind('spellcheck_add', 'add_word');
+Irssi::command_bind('spellcheck_add', 'spellcheck_add_word');
+
 Irssi::settings_add_bool('spellcheck', 'spellcheck_enabled', 1);
 Irssi::settings_add_str( 'spellcheck', 'spellcheck_default_language', 'en_US');
 Irssi::settings_add_str( 'spellcheck', 'spellcheck_languages', '');
