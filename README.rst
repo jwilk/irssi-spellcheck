@@ -56,6 +56,10 @@ It's user's responsibility to create the window::
    /WINDOW STICK OFF
    /WINDOW HIDE
 
+Commands
+~~~~~~~~
+* ``/SPELLCHECK_ADD <word>...`` - add word(s) to personal dictionary.
+
 Bugs
 ~~~~
 

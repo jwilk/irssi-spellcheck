@@ -13,6 +13,7 @@ irssi-spellcheck (0.6) UNRELEASED; urgency=low
 
   [ Jakub Wilk ]
   * Document the split window feature.
+  * Document the /SPELLCHECK_ADD command.
   * Improve error handling.
   * Refactor the language-choosing code.
   * Change the code indentation, for consistency with some new code and to
@@ -23,7 +24,7 @@ irssi-spellcheck (0.6) UNRELEASED; urgency=low
     bitbucket repository.
   * Don't use sentence-like capitalization and punctuation in the header.
 
- -- Jakub Wilk <jwilk@jwilk.net>  Wed, 27 Feb 2013 23:33:51 +0100
+ -- Jakub Wilk <jwilk@jwilk.net>  Thu, 28 Feb 2013 12:54:35 +0100
 
 irssi-spellcheck (0.5) unstable; urgency=low
 
