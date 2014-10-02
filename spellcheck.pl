@@ -35,7 +35,7 @@ sub spellcheck_setup
     my $speller = $speller{$lang};
     return $speller if defined $speller;
     $speller = Text::Aspell->new or return;
-    $speller->set_option('lang', $_[0]) or return;
+    $speller->set_option('lang', $lang) or return;
     $speller->set_option('sug-mode', 'fast') or return;
     $speller{$lang} = $speller;
     return $speller;
