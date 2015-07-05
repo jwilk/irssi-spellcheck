@@ -75,4 +75,4 @@ Bugs
   tab-completion.
 * Probably more, please report to `Jakub Wilk <jwilk@jwilk.net>`_.
 
-.. vim:ts=3 sw=3 et tw=72
+.. vim:ts=3 sts=3 sw=3 et tw=72
