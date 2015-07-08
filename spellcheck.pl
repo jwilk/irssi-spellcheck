@@ -1,5 +1,5 @@
 # Copyright © 2008 Jakub Jankowski <shasta@toxcorp.com>
-# Copyright © 2012, 2013 Jakub Wilk <jwilk@jwilk.net>
+# Copyright © 2012-2013 Jakub Wilk <jwilk@jwilk.net>
 # Copyright © 2012 Gabriel Pettier <gabriel.pettier@gmail.com>
 #
 # This program is free software; you can redistribute it and/or modify
