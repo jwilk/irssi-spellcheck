@@ -155,6 +155,8 @@ sub spellcheck_key_pressed
 
     my $lang = spellcheck_find_language($win);
 
+    return if $lang eq 'und';
+
     my $suggestions = spellcheck_check_word($lang, $word, 0);
 
     return unless defined $suggestions;

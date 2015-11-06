@@ -31,7 +31,9 @@ Settings
   spellcheck_languages netA/#chan1/en_US,#chan2/fi_FI,
   netB/!chan3/pl_PL`` will use ``en_US`` for ``#chan1`` on network
   ``netA``, ``fi_FI`` for ``#chan2`` on every network, and ``pl_PL`` for
-  ``!chan3`` on network ``netB``. By default this setting is empty.
+  ``!chan3`` on network ``netB``.
+  You can use ``und`` as language code to disable spellchecking.
+  By default this setting is empty.
 * ``spellcheck_default_language`` — language to use in empty windows,
   or when nothing from ``spellcheck_languages`` matches. Defaults to
   ``en_US``.
