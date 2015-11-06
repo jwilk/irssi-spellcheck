@@ -90,7 +90,7 @@ sub _spellcheck_find_language
     $target  = lc($target);
 
     # possible settings: network/channel/lang  or  channel/lang
-    my @languages = split(/[ ,]/, Irssi::settings_get_str('spellcheck_languages'));
+    my @languages = split(/[ ,]+/, Irssi::settings_get_str('spellcheck_languages'));
     for my $langstr (@languages) {
         # strip trailing slashes
         $langstr =~ s=/+$==;
