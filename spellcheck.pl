@@ -92,19 +92,9 @@ sub _spellcheck_find_language
     # possible settings: network/channel/lang  or  channel/lang
     my @languages = split(/[ ,]+/, Irssi::settings_get_str('spellcheck_languages'));
     for my $langstr (@languages) {
-        # strip trailing slashes
-        $langstr =~ s=/+$==;
-        my ($s1, $s2, $s3) = split(/\//, $langstr, 3);
-        my ($t, $c, $l);
-        if (defined $s3 && $s3 ne '') {
-            # network/channel/lang
-            $t = lc($s1); $c = lc($s2); $l = $s3;
-        } else {
-            # channel/lang
-            $c = lc($s1); $l = $s2;
-        }
-
-        if ($c eq $target && (!defined $t || $t eq $network)) {
+        my ($t, $c, $l) = $langstr =~ m,^(?:([^/]+)/)?([^/]+)/([^/]+)/*$,;
+        $t //= $network;
+        if (lc($c) eq $target and lc($t) eq $network) {
             return $l;
         }
     }
