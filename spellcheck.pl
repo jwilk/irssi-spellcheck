@@ -126,10 +126,11 @@ sub spellcheck_key_pressed
         $window_height = Irssi::settings_get_str('spellcheck_window_height');
     }
 
+    return unless Irssi::settings_get_bool('spellcheck_enabled');
+
     # I know no way to *mark* misspelled words in the input line,
     # that's why there's no spellcheck_print_suggestions -
     # because printing suggestions is our only choice.
-    return unless Irssi::settings_get_bool('spellcheck_enabled');
 
     # hide correction window when message is sent
     if ($key eq 10 && $correction_window) {
