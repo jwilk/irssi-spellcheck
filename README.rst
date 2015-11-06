@@ -26,7 +26,7 @@ and tab-complete through what Aspell suggests.
 Settings
 ~~~~~~~~
 
-* ``spellcheck_languages`` — a list of space and/or comma separated
+* ``spellcheck_languages`` — a list of space or comma separated
   languages to use on certain networks/channels. Example: ``/set
   spellcheck_languages netA/#chan1/en_US,#chan2/fi_FI,
   netB/!chan3/pl_PL`` will use ``en_US`` for ``#chan1`` on network
