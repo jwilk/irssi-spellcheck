@@ -14,7 +14,7 @@ Requires
 .. _GNU Aspell:
    http://aspell.net/
 .. _Text::Aspell:
-   http://search.cpan.org/dist/Text-Aspell/
+   https://metacpan.org/release/Text-Aspell
 
 Description
 ~~~~~~~~~~~
