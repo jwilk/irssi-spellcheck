@@ -2,8 +2,8 @@
 Spell-checker for Irssi
 =======================
 
-Requires
-~~~~~~~~
+Requirements
+~~~~~~~~~~~~
 
 * `Irssi`_ 0.8.12 or newer
 * `GNU Aspell`_ with appropriate dictionaries
