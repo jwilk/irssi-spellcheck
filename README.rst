@@ -10,7 +10,7 @@ Requires
 * Perl module `Text::Aspell`_
 
 .. _Irssi:
-   http://irssi.org/
+   https://irssi.org/
 .. _GNU Aspell:
    http://aspell.net/
 .. _Text::Aspell:
