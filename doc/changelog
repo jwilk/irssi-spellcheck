@@ -1,3 +1,9 @@
+irssi-spellcheck (0.7.1) unstable; urgency=low
+
+  * 
+
+ -- Jakub Wilk <jwilk@jwilk.net>  Sat, 19 Dec 2015 14:11:25 +0100
+
 irssi-spellcheck (0.7) unstable; urgency=low
 
   * Make it possible to disable spell-checking in spellcheck_languages.
