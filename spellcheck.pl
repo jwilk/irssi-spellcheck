@@ -61,7 +61,7 @@ sub spellcheck_check_word
     $prefix = $1 if $add_rest;
     $word =~ s/([[:punct:]]*)$//; # ...and trailing ones, too
     $suffix = $1 if $add_rest;
-    return if $word =~ m{^\w+://}; # looks like an URL
+    return if $word =~ m{^\w+://}; # looks like a URL
     return if $word =~ m{^[^@]+@[^@]+$}; # looks like an e-mail
     return if $word =~ m{^[[:digit:][:punct:]]+$}; # looks like a number
 
