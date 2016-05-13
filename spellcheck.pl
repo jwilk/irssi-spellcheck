@@ -45,15 +45,18 @@ sub spellcheck_setup
 # spell-checking it) to the suggestions returned"
 sub spellcheck_check_word
 {
-    my ($lang, $word, $add_rest) = @_;
+    my ($langs, $word, $add_rest) = @_;
     my $win = Irssi::active_win();
     my $prefix = '';
     my $suffix = '';
 
-    my $speller = spellcheck_setup($lang);
-    if (not defined $speller) {
-        $win->print('%R' . "Error while setting up spell-checker for $lang" . '%N', MSGLEVEL_CLIENTERROR);
-        return;
+    my @langs = split(/[+]/, $langs);
+    for my $lang (@langs) {
+        my $speller = spellcheck_setup($lang);
+        if (not defined $speller) {
+            $win->print('%R' . "Error while setting up spell-checker for $lang" . '%N', MSGLEVEL_CLIENTERROR);
+            return;
+        }
     }
 
     return if $word =~ m{^/}; # looks like a path
@@ -65,16 +68,20 @@ sub spellcheck_check_word
     return if $word =~ m{^[^@]+@[^@]+$}; # looks like an e-mail
     return if $word =~ m{^[[:digit:][:punct:]]+$}; # looks like a number
 
-    my $ok = $speller{$lang}->check($word);
-    if (not defined $ok) {
-        $win->print('%R' . "Error while spell-checking for $lang" . '%N', MSGLEVEL_CLIENTERROR);
-        return;
+    my @result;
+    for my $lang (@langs) {
+        my $ok = $speller{$lang}->check($word);
+        if (not defined $ok) {
+            $win->print('%R' . "Error while spell-checking for $lang" . '%N', MSGLEVEL_CLIENTERROR);
+            return;
+        }
+        if ($ok) {
+            return;
+        } else {
+            push @result, map { "$prefix$_$suffix" } $speller{$lang}->suggest($word);
+        }
     }
-    unless ($ok) {
-        my @result =  map { "$prefix$_$suffix" } $speller{$lang}->suggest($word);
-        return \@result;
-    }
-    return;
+    return \@result;
 }
 
 sub _spellcheck_find_language
