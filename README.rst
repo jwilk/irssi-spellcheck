@@ -48,8 +48,8 @@ Corrections in a split window
 As an experimental feature, it is possible to display corrections in a
 separate split window:
 
-* ``spellcheck_window_name`` - name of the window.
-* ``spellcheck_window_height`` - height of the window.
+* ``spellcheck_window_name`` — name of the window.
+* ``spellcheck_window_height`` — height of the window.
 
 It's user's responsibility to create the window::
 
@@ -60,7 +60,7 @@ It's user's responsibility to create the window::
 
 Commands
 ~~~~~~~~
-* ``/SPELLCHECK_ADD <word>...`` - add word(s) to personal dictionary.
+* ``/SPELLCHECK_ADD <word>...`` — add word(s) to personal dictionary.
 
 Bugs
 ~~~~
@@ -72,7 +72,7 @@ Bugs
   word before pressing enter, unless you're using dot to finish your
   sentences).
 * When you press space and realize that the word is wrong, you can't
-  tab-complete to the suggestions right away - you need to use backspace
+  tab-complete to the suggestions right away — you need to use backspace
   and then tab-complete. With dot you get an extra space after
   tab-completion.
 * Probably more, please report to `Jakub Wilk <jwilk@jwilk.net>`_.
