@@ -65,7 +65,6 @@ Commands
 Bugs
 ~~~~
 
-* It won't catch all mistakes.
 * Picking actual words from what you type is very kludgy, you may
   occasionally see some leftovers like digits or punctuation
 * Works every time you press space or a dot (so won't work for the last
