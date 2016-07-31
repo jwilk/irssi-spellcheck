@@ -114,4 +114,4 @@ Please report bugs to the `issue tracker`_.
 .. _issue tracker:
    https://github.com/jwilk/irssi-spellcheck/issues
 
-.. vim:ts=3 sts=3 sw=3 et tw=72
+.. vim:ft=rst ts=3 sts=3 sw=3 et tw=72
