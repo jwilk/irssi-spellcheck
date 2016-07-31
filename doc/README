@@ -62,6 +62,8 @@ Settings
 ``spellcheck_word_color``
    Highlight misspelled word to this color.
 
+   The default is ``%R`` (red).
+
 Corrections in a split window
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 As an experimental feature, it is possible to display corrections in a
