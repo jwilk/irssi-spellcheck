@@ -32,7 +32,7 @@ Settings
 
    For example::
 
-       /set spellcheck_languages netA/#chan1/en_US,#chan2/fi_FI,netB/!chan3/pl_PL
+       /SET spellcheck_languages netA/#chan1/en_US,#chan2/fi_FI,netB/!chan3/pl_PL
 
    will use:
 
