@@ -157,7 +157,7 @@ sub spellcheck_key_pressed
     return if ($inputline =~ $re);
 
     # get last bit from the inputline
-    my ($word) = $inputline =~ /\s*([^\s]+)$/;
+    my ($word) = $inputline =~ /\s*(\S+)$/;
     defined $word or return;
 
     my $lang = spellcheck_find_language($win);
