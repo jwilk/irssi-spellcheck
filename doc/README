@@ -89,6 +89,8 @@ Commands
 Bugs
 ~~~~
 
+Known issues:
+
 * Picking actual words from what you type is very kludgy, you may
   occasionally see some leftovers like digits or punctuation
 * Works every time you press space or a dot (so won't work for the last
@@ -98,6 +100,10 @@ Bugs
   tab-complete to the suggestions right away — you need to use backspace
   and then tab-complete. With dot you get an extra space after
   tab-completion.
-* Probably more, please report to `Jakub Wilk <jwilk@jwilk.net>`_.
+
+Please report bugs to the `issue tracker`_.
+
+.. _issue tracker:
+   https://github.com/jwilk/irssi-spellcheck/issues
 
 .. vim:ts=3 sts=3 sw=3 et tw=72
