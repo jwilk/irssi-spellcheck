@@ -1,0 +1,28 @@
+severity = 1
+verbose = %f:%l: [%p] %m\n
+
+[-CodeLayout::ProhibitParensWithBuiltins]
+# no, thanks
+
+[-CodeLayout::RequireTidyCode]
+# no, thanks
+
+[-Modules::RequireEndWithOne]
+[-Modules::RequireExplicitPackage]
+# not needed for Irssi plugins
+
+[-ValuesAndExpressions::ProhibitEmptyQuotes]
+# no, thanks
+
+[-ValuesAndExpressions::ProhibitNoisyQuotes]
+# no, thanks
+
+[-ValuesAndExpressions::RequireNumberSeparators]
+# no, thanks
+
+[-RegularExpressions::RequireDotMatchAnything]
+[-RegularExpressions::RequireExtendedFormatting]
+[-RegularExpressions::RequireLineBoundaryMatching]
+# no, thanks
+
+# vim:ft=dosini
