@@ -207,8 +207,8 @@ sub spellcheck_complete_word
 
 sub spellcheck_add_word
 {
-    my $win = Irssi::active_win();
     my ($cmd_line, $server, $win_item) = @_;
+    my $win = Irssi::active_win();
     my @args = split(' ', $cmd_line);
 
     if (@args <= 0) {
