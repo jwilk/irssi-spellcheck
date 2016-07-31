@@ -26,30 +26,52 @@ and tab-complete through what Aspell suggests.
 Settings
 ~~~~~~~~
 
-* ``spellcheck_languages`` — a list of space or comma separated
-  languages to use on certain networks/channels. Example: ``/set
-  spellcheck_languages netA/#chan1/en_US,#chan2/fi_FI,
-  netB/!chan3/pl_PL`` will use ``en_US`` for ``#chan1`` on network
-  ``netA``, ``fi_FI`` for ``#chan2`` on every network, and ``pl_PL`` for
-  ``!chan3`` on network ``netB``.
-  You can use ``und`` as language code to disable spellchecking.
-  By default this setting is empty.
-* ``spellcheck_default_language`` — language to use in empty windows,
-  or when nothing from ``spellcheck_languages`` matches. Defaults to
-  ``en_US``.
-* ``spellcheck_enabled`` [``ON``/``OFF``] — self explaining. Sometimes
-  (like when pasting foreign-language text) you don't want the script to
-  spit out lots of suggestions, and turning it off for a while is the
-  easiest way. By default it's ``ON``.
-* ``spellcheck_word_color`` — highlight misspelled word to this color.
+``spellcheck_languages``
+   A list of space or comma separated languages to use on certain
+   networks/channels.
+
+   For example::
+
+       /set spellcheck_languages netA/#chan1/en_US,#chan2/fi_FI,netB/!chan3/pl_PL
+
+   will use:
+
+   * ``en_US`` for ``#chan1`` on network ``netA``,
+   * ``fi_FI`` for ``#chan2`` on every network,
+   * and ``pl_PL`` for ``!chan3`` on network ``netB``.
+
+   You can use ``und`` as language code to disable spellchecking.
+
+   By default this setting is empty.
+
+``spellcheck_default_language``
+   Language to use in empty windows, or when nothing from
+   ``spellcheck_languages`` matches.
+
+   The default is ``en_US``.
+
+``spellcheck_enabled`` [``ON``/``OFF``]
+   Enable or disable spellchecking globally.
+
+   Sometimes (like when pasting foreign-language text), you don't want
+   the script to spit out lots of suggestions, and turning it off for a
+   while is the easiest way.
+
+   The default is ``ON``.
+
+``spellcheck_word_color``
+   Highlight misspelled word to this color.
 
 Corrections in a split window
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 As an experimental feature, it is possible to display corrections in a
 separate split window:
 
-* ``spellcheck_window_name`` — name of the window.
-* ``spellcheck_window_height`` — height of the window.
+``spellcheck_window_name``
+   Name of the window.
+
+``spellcheck_window_height``
+   Height of the window.
 
 It's user's responsibility to create the window::
 
@@ -60,7 +82,9 @@ It's user's responsibility to create the window::
 
 Commands
 ~~~~~~~~
-* ``/SPELLCHECK_ADD <word>...`` — add word(s) to personal dictionary.
+``/SPELLCHECK_ADD <word>...``
+
+   Add word(s) to personal dictionary.
 
 Bugs
 ~~~~
