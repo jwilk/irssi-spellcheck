@@ -140,7 +140,7 @@ sub spellcheck_key_pressed
     # because printing suggestions is our only choice.
 
     # hide correction window when message is sent
-    if (chr($key) eq "\n" && $correction_window) {
+    if (chr($key) =~ /\A[\r\n]\z/ && $correction_window) {
         $correction_window->command("window hide $window_name");
     }
 
