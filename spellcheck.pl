@@ -99,7 +99,7 @@ sub _spellcheck_find_language
     # possible settings: network/channel/lang  or  channel/lang
     my @languages = split(/[ ,]+/, Irssi::settings_get_str('spellcheck_languages'));
     for my $langstr (@languages) {
-        my ($t, $c, $l) = $langstr =~ m,^(?:([^/]+)/)?([^/]+)/([^/]+)/*$,;
+        my ($t, $c, $l) = $langstr =~ m{^(?:([^/]+)/)?([^/]+)/([^/]+)/*$};
         $t //= $network;
         if (lc($c) eq $target and lc($t) eq $network) {
             return $l;
