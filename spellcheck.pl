@@ -186,6 +186,8 @@ sub spellcheck_key_pressed
     } else {
         $correction_window->print("No suggestions for $color$word%N");
     }
+
+    return;
 }
 
 sub spellcheck_complete_word
@@ -199,6 +201,8 @@ sub spellcheck_complete_word
     # add suggestions to the completion list
     my $suggestions = spellcheck_check_word($lang, $word, 1);
     push(@$complist, @$suggestions) if defined $suggestions;
+
+    return;
 }
 
 sub spellcheck_add_word
@@ -228,6 +232,8 @@ sub spellcheck_add_word
     if (not $ok) {
         $win->print('%R' . "Error while saving $lang dictionary" . '%N', MSGLEVEL_CLIENTERROR);
     }
+
+    return;
 }
 
 Irssi::command_bind('spellcheck_add', 'spellcheck_add_word');
