@@ -182,7 +182,7 @@ sub spellcheck_key_pressed
     $word =~ s/%/%%/g;
     my $color = Irssi::settings_get_str('spellcheck_word_color');
     if (scalar @$suggestions > 0) {
-        $correction_window->print("Suggestions for $color$word%N - " . join(", ", @$suggestions));
+        $correction_window->print("Suggestions for $color$word%N - " . join(', ', @$suggestions));
     } else {
         $correction_window->print("No suggestions for $color$word%N");
     }
@@ -208,7 +208,7 @@ sub spellcheck_add_word
     my @args = split(' ', $cmd_line);
 
     if (@args <= 0) {
-        $win->print("SPELLCHECK_ADD <word>...    add word(s) to personal dictionary");
+        $win->print('SPELLCHECK_ADD <word>...    add word(s) to personal dictionary');
         return;
     }
 
