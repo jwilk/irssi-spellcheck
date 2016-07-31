@@ -2,8 +2,9 @@ irssi-spellcheck (0.7.1) UNRELEASED; urgency=low
 
   * Add support for multilingual channels.
     Thanks to Piotr Lewandowski for the bug report.
+  * Improve the documentation.
 
- -- Jakub Wilk <jwilk@jwilk.net>  Fri, 13 May 2016 23:46:44 +0200
+ -- Jakub Wilk <jwilk@jwilk.net>  Sun, 31 Jul 2016 15:06:07 +0200
 
 irssi-spellcheck (0.7) unstable; urgency=low
 
