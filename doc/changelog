@@ -1,11 +1,11 @@
-irssi-spellcheck (0.8) UNRELEASED; urgency=low
+irssi-spellcheck (0.8) unstable; urgency=low
 
   * Fix the split window mode.
   * Add support for multilingual channels.
     Thanks to Piotr Lewandowski for the bug report.
   * Improve the documentation.
 
- -- Jakub Wilk <jwilk@jwilk.net>  Sun, 31 Jul 2016 16:22:34 +0200
+ -- Jakub Wilk <jwilk@jwilk.net>  Sun, 31 Jul 2016 16:59:23 +0200
 
 irssi-spellcheck (0.7) unstable; urgency=low
 
