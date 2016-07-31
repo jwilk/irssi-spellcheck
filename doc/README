@@ -42,6 +42,10 @@ Settings
 
    You can use ``und`` as language code to disable spellchecking.
 
+   For multilingual channels, you can combine language codes with
+   ``+``. For example, ``en+de`` will accept both English and German
+   words.
+
    By default this setting is empty.
 
 ``spellcheck_default_language``
