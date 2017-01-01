@@ -5,7 +5,8 @@ addons:
     - python-pip
 install:
 - pip install --user docutils
+- export PATH="$PATH:$HOME/.local/bin/"
 script:
-- find -name "*.rst" | xargs -L1 -t -I{} ~/.local/bin/rst2xml.py --strict {} /dev/null
+- private/check-rst
 
 # vim:ts=2 sts=2 sw=2 et
