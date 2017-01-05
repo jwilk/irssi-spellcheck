@@ -3,9 +3,8 @@ addons:
   apt:
     packages:
     - python-pip
-install:
-- pip install --user docutils
-- export PATH="$PATH:$HOME/.local/bin/"
+    - python-docutils
+install: []
 script:
 - private/check-rst
 
