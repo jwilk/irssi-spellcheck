@@ -90,8 +90,8 @@ It's user's responsibility to create the window::
 
 Commands
 ~~~~~~~~
-``/SPELLCHECK_ADD <word>...``
 
+``/SPELLCHECK_ADD <word>...``
    Add word(s) to personal dictionary.
 
 Bugs
