@@ -2,7 +2,6 @@ language: perl
 addons:
   apt:
     packages:
-    - python-pip
     - python-docutils
 install: []
 script:
