@@ -47,7 +47,7 @@ export GZIP='-9 -n'
 git archive "$commit" --prefix="$name-$version/" | tar -C "$sourceroot" -xf -
 cd "$sourceroot"/*
 rm .travis.yml
-rm README  # shipped as doc/README
+rm README.rst  # shipped as doc/README
 mv COPYING doc/
 rm private/build-source-tarball
 cd ..
