@@ -1,11 +1,8 @@
 dist: trusty
 sudo: false
 language: perl
-addons:
-  apt:
-    packages:
-    - python-docutils
-install: []
+install:
+- python -m pip install --user docutils
 script:
 - private/check-rst
 
