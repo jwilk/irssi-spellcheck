@@ -172,6 +172,7 @@ sub spellcheck_key_pressed
     if ($correction_window) {
         $win->command("^window show $window_name");
         $correction_window->command('^window stick off');
+        $win->set_active;
         $correction_window->command("window size $window_height");
     } else {
         $correction_window = $win;
