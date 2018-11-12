@@ -63,10 +63,25 @@ Settings
 
    The default is ``ON``.
 
+``spellcheck_print_suggestions`` [``ON``/``OFF``]
+   Enable or disable printing out the spelling suggestions.
+
+   The corrections are still added to the tab completion in case the
+   printing is disabled.
+
+   The default is ``ON``.
+
 ``spellcheck_word_color``
    Highlight misspelled word to this color.
 
    The default is ``%R`` (red).
+
+``spellcheck_word_input_color``
+   Highlight misspelled words inside the input prompt in this color.
+
+   The default is ``%U`` (underline).
+
+   Available on Irssi 1.2.0 and later.
 
 Corrections in a split window
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

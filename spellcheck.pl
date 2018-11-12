@@ -16,6 +16,8 @@ use warnings;
 
 use vars qw($VERSION %IRSSI);
 use Irssi 20070804;
+use Irssi::TextUI;
+use Encode;
 use Text::Aspell;
 
 $VERSION = '0.9';
@@ -135,20 +137,27 @@ sub spellcheck_key_pressed
 
     return unless Irssi::settings_get_bool('spellcheck_enabled');
 
-    # I know no way to *mark* misspelled words in the input line,
-    # that's why there's no spellcheck_print_suggestions -
-    # because printing suggestions is our only choice.
-
     # hide correction window when message is sent
     if (chr($key) =~ /\A[\r\n]\z/ && $correction_window) {
         $correction_window->command("^window hide $window_name");
+        if (Irssi->can('gui_input_clear_extents')) {
+            Irssi::gui_input_clear_extents(0, 9999);
+        }
+    }
+
+    # get current inputline
+    my $inputline = Irssi::parse_special('$L');
+    if (lc Irssi::settings_get_str('term_charset') eq 'utf-8') {
+        Encode::_utf8_on($inputline);
+    }
+    if (Irssi->can('gui_input_set_extent')) {
+        Irssi::gui_input_set_extent(length $inputline, '%n');
     }
 
     # don't bother unless pressed key is space or dot
     return unless (chr $key eq ' ' or chr $key eq '.');
 
-    # get current inputline
-    my $inputline = Irssi::parse_special('$L');
+    $inputline = substr $inputline, 0, Irssi::gui_input_get_pos;
 
     # check if inputline starts with any of cmdchars
     # we shouldn't spell-check commands
@@ -157,8 +166,12 @@ sub spellcheck_key_pressed
     return if ($inputline =~ $re);
 
     # get last bit from the inputline
-    my ($word) = $inputline =~ /\s*(\S+)$/;
+    my ($word) = $inputline =~ /\s*(\S+)[.\s]*$/;
     defined $word or return;
+    my $start = $-[1];
+    if (Irssi->can('gui_input_clear_extents')) {
+        Irssi::gui_input_clear_extents($start, length $word);
+    }
 
     my $lang = spellcheck_find_language($win);
 
@@ -167,6 +180,13 @@ sub spellcheck_key_pressed
     my $suggestions = spellcheck_check_word($lang, $word, 0);
 
     return unless defined $suggestions;
+
+    my $color = Irssi::settings_get_str('spellcheck_word_input_color');
+    if ($color && Irssi->can('gui_input_set_extents')) {
+        Irssi::gui_input_set_extents($start, length $word, $color, '%n');
+    }
+
+    return unless Irssi::settings_get_bool('spellcheck_print_suggestions');
 
     # show corrections window if hidden
     if ($correction_window) {
@@ -181,7 +201,7 @@ sub spellcheck_key_pressed
     # we found a mistake, print suggestions
 
     $word =~ s/%/%%/g;
-    my $color = Irssi::settings_get_str('spellcheck_word_color');
+    $color = Irssi::settings_get_str('spellcheck_word_color');
     if (scalar @$suggestions > 0) {
         $correction_window->print("Suggestions for $color$word%N - " . join(', ', @$suggestions));
     } else {
@@ -240,13 +260,17 @@ sub spellcheck_add_word
 Irssi::command_bind('spellcheck_add', 'spellcheck_add_word');
 
 Irssi::settings_add_bool('spellcheck', 'spellcheck_enabled', 1);
+Irssi::settings_add_bool('spellcheck', 'spellcheck_print_suggestions', 1);
 Irssi::settings_add_str( 'spellcheck', 'spellcheck_default_language', 'en_US');
 Irssi::settings_add_str( 'spellcheck', 'spellcheck_languages', '');
 Irssi::settings_add_str( 'spellcheck', 'spellcheck_word_color', '%R');
 Irssi::settings_add_str( 'spellcheck', 'spellcheck_window_name', '');
 Irssi::settings_add_str( 'spellcheck', 'spellcheck_window_height', 10);
+Irssi::settings_add_str( 'spellcheck', 'spellcheck_word_input_color', '%U');
 
-Irssi::signal_add_first('gui key pressed', 'spellcheck_key_pressed');
+Irssi::signal_add_last('key word_completion', sub{spellcheck_key_pressed(ord '.')});
+Irssi::signal_add_last('key word_completion_backward', sub{spellcheck_key_pressed(ord '.')});
+Irssi::signal_add_last('gui key pressed', 'spellcheck_key_pressed');
 Irssi::signal_add_last('complete word', 'spellcheck_complete_word');
 
 1;
