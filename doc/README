@@ -81,7 +81,7 @@ separate split window:
 
    The defaults is 10.
 
-It's user's responsibility to create the window::
+It's the user's responsibility to create the window::
 
    /WINDOW NEW SPLIT
    /WINDOW NAME <name>
