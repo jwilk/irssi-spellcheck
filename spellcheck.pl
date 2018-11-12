@@ -153,7 +153,7 @@ sub spellcheck_key_pressed
     # check if inputline starts with any of cmdchars
     # we shouldn't spell-check commands
     my $cmdchars = Irssi::settings_get_str('cmdchars');
-    my $re = qr/^[$cmdchars]/;
+    my $re = qr/^[\Q$cmdchars\E]/;
     return if ($inputline =~ $re);
 
     # get last bit from the inputline
