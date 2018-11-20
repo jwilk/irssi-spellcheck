@@ -1,5 +1,4 @@
 dist: trusty
-sudo: false
 language: perl
 install:
 - python -m pip install --user docutils
