@@ -248,4 +248,6 @@ Irssi::settings_add_str( 'spellcheck', 'spellcheck_window_height', 10);
 Irssi::signal_add_first('gui key pressed', 'spellcheck_key_pressed');
 Irssi::signal_add_last('complete word', 'spellcheck_complete_word');
 
+1;
+
 # vim:ts=4 sts=4 sw=4 et
