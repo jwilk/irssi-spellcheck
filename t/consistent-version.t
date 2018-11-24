@@ -19,18 +19,22 @@ use warnings;
 use English qw(-no_match_vars);
 use FindBin ();
 use Test::More tests => 2;
+use Module::Loaded qw();
 
 my $base = "$FindBin::Bin/..";
-open(my $fh, '<', "$base/spellcheck.pl") or die $ERRNO;
-my $code_version = 0;
-while (<$fh>) {
-    if (/^\$VERSION\s*=/) {
-        my $VERSION;
-        $code_version = eval;
-    }
-}
-close($fh) or die $ERRNO;
-open($fh, '<', "$base/doc/changelog") or die $ERRNO;
+Module::Loaded::mark_as_loaded('Irssi');
+
+package Irssi;
+use base 'Exporter';
+our $VERSION = 20071006;  # Irssi 0.8.12
+sub AUTOLOAD { }
+our @EXPORT = qw(MSGLEVEL_CLIENTERROR);
+
+package script;
+do "$base/spellcheck.pl" or die;
+
+package main;
+open(my $fh, '<', "$base/doc/changelog") or die $ERRNO;
 my $changelog = <$fh> // die $ERRNO;
 close($fh) or die $ERRNO;
 my ($changelog_version, $distribution) = $changelog =~ qr/^irssi-spellcheck [(](\S+)[)] (\S+); urgency=\S+$/;
@@ -49,7 +53,7 @@ SKIP: {
     );
 }
 cmp_ok(
-    ($code_version // ''),
+    ($script::VERSION // ''),
     'eq',
     ($changelog_version // ''),
     'code version == changelog version'
