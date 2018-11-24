@@ -1,5 +1,8 @@
 dist: trusty
 language: perl
+perl:
+- "5.10"
+- "5.28"
 addons:
   apt:
     packages:
