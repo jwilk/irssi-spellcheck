@@ -1,7 +1,13 @@
 dist: trusty
 language: perl
+addons:
+  apt:
+    packages:
+    - libaspell-dev
 install:
 - python -m pip install --user docutils
+- export PERL_CPANM_OPT='--no-interactive --no-man-pages --notest --skip-satisfied'
+- cpanm Text::Aspell
 script:
 - dpkg-parsechangelog -ldoc/changelog --all 2>&1 >/dev/null | { ! grep .; }
 - private/check-rst
