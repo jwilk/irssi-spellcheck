@@ -141,7 +141,7 @@ sub spellcheck_key_pressed
 
     # hide correction window when message is sent
     if (chr($key) =~ /\A[\r\n]\z/ && $correction_window) {
-        $correction_window->command("window hide $window_name");
+        $correction_window->command("^window hide $window_name");
     }
 
     # don't bother unless pressed key is space or dot
@@ -170,8 +170,8 @@ sub spellcheck_key_pressed
 
     # show corrections window if hidden
     if ($correction_window) {
-        $win->command("window show $window_name");
-        $correction_window->command('window stick off');
+        $win->command("^window show $window_name");
+        $correction_window->command('^window stick off');
         $correction_window->command("window size $window_height");
     } else {
         $correction_window = $win;
