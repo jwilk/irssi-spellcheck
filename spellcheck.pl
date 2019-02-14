@@ -22,7 +22,7 @@ use Text::Aspell;
 
 $VERSION = '0.9';
 %IRSSI = (
-    authors     => 'Jakub Wilk, Jakub Jankowski, Gabriel Pettier',
+    authors     => 'Jakub Wilk, Jakub Jankowski, Gabriel Pettier, Nei',
     name        => 'spellcheck',
     description => 'checks for spelling errors using Aspell',
     license     => 'GPLv2',
