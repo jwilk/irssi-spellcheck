@@ -1,8 +1,15 @@
 irssi-spellcheck (0.9) UNRELEASED; urgency=low
 
-  * 
+  [ Nei ]
+  * Hide correction window manipulation messages.
+  * Activate main window after showing correction window.
+  * Add word colouring in the input prompt.
 
- -- Jakub Wilk <jwilk@jwilk.net>  Fri, 15 Feb 2019 17:15:31 +0100
+  [ Jakub Wilk]
+  * Fix handling unusual command characters.
+  * Fix wording and formatting in README.
+
+ -- Jakub Wilk <jwilk@jwilk.net>  Fri, 15 Feb 2019 17:20:56 +0100
 
 irssi-spellcheck (0.8) unstable; urgency=low
 
