@@ -94,7 +94,7 @@ separate split window:
 ``spellcheck_window_height``
    Height of the window.
 
-   The defaults is 10.
+   The default is 10.
 
 It's the user's responsibility to create the window::
 
