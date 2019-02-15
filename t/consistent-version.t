@@ -23,6 +23,7 @@ use Module::Loaded qw();
 
 my $base = "$FindBin::Bin/..";
 Module::Loaded::mark_as_loaded('Irssi');
+Module::Loaded::mark_as_loaded('Irssi::TextUI');
 
 package Irssi;
 use base 'Exporter';
