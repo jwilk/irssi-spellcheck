@@ -157,7 +157,7 @@ sub spellcheck_key_pressed
     # don't bother unless pressed key is space or dot
     return unless (chr $key eq ' ' or chr $key eq '.');
 
-    $inputline = substr $inputline, 0, Irssi::gui_input_get_pos;
+    $inputline = substr $inputline, 0, Irssi::gui_input_get_pos();
 
     # check if inputline starts with any of cmdchars
     # we shouldn't spell-check commands
