@@ -8,8 +8,9 @@ irssi-spellcheck (0.9) UNRELEASED; urgency=low
   [ Jakub Wilk]
   * Fix handling unusual command characters.
   * Fix wording and formatting in README.
+  * Strip punctuation around the misspelled word when printing corrections.
 
- -- Jakub Wilk <jwilk@jwilk.net>  Fri, 15 Feb 2019 17:20:56 +0100
+ -- Jakub Wilk <jwilk@jwilk.net>  Fri, 15 Feb 2019 18:26:29 +0100
 
 irssi-spellcheck (0.8) unstable; urgency=low
 
