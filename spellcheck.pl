@@ -188,6 +188,10 @@ sub spellcheck_key_pressed
 
     return unless defined $suggestions;
 
+    # strip leading and trailing punctuation
+    $word =~ s/^([[:punct:]]+)// and $start += length $1;
+    $word =~ s/[[:punct:]]+$//;
+
     # add color to the misspelled word
     my $color = Irssi::settings_get_str('spellcheck_word_input_color');
     if ($color && Irssi->can('gui_input_set_extents')) {
