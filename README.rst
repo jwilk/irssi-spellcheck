@@ -23,6 +23,12 @@ word was misspelled. It also adds suggestions to the list of
 tab-completions, so once you know last word is wrong, you can go back
 and tab-complete through what Aspell suggests.
 
+.. <git> (don't include in release tarballs)
+
+.. image:: doc/screenshot.svg
+
+.. </git>
+
 Settings
 ~~~~~~~~
 
