@@ -264,9 +264,9 @@ Irssi::settings_add_bool('spellcheck', 'spellcheck_print_suggestions', 1);
 Irssi::settings_add_str( 'spellcheck', 'spellcheck_default_language', 'en_US');
 Irssi::settings_add_str( 'spellcheck', 'spellcheck_languages', '');
 Irssi::settings_add_str( 'spellcheck', 'spellcheck_word_color', '%R');
+Irssi::settings_add_str( 'spellcheck', 'spellcheck_word_input_color', '%U');
 Irssi::settings_add_str( 'spellcheck', 'spellcheck_window_name', '');
 Irssi::settings_add_str( 'spellcheck', 'spellcheck_window_height', 10);
-Irssi::settings_add_str( 'spellcheck', 'spellcheck_word_input_color', '%U');
 
 Irssi::signal_add_last('key word_completion', sub{spellcheck_key_pressed(ord '.')});
 Irssi::signal_add_last('key word_completion_backward', sub{spellcheck_key_pressed(ord '.')});
