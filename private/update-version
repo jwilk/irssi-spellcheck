@@ -1,6 +1,6 @@
 #!/bin/sh
+set -e -u
 export version=${1:?"no version number provided"}
-set -e
 PS4='$ '
 set -x
 dch -m -v "$version" -u low -c doc/changelog
