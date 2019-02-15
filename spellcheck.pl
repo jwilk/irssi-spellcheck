@@ -150,6 +150,10 @@ sub spellcheck_key_pressed
     if (lc Irssi::settings_get_str('term_charset') eq 'utf-8') {
         Encode::_utf8_on($inputline);
     }
+
+    # ensure that newly added characters are not colored
+    # when correcting a colored wored
+    # FIXME: this works at EOL, but not elsewhere
     if (Irssi->can('gui_input_set_extent')) {
         Irssi::gui_input_set_extent(length $inputline, '%n');
     }
@@ -168,6 +172,9 @@ sub spellcheck_key_pressed
     # get last bit from the inputline
     my ($word) = $inputline =~ /\s*(\S+)[.\s]*$/;
     defined $word or return;
+
+    # remove color from the last word
+    # (we will add it back later if needed)
     my $start = $-[1];
     if (Irssi->can('gui_input_clear_extents')) {
         Irssi::gui_input_clear_extents($start, length $word);
@@ -181,6 +188,7 @@ sub spellcheck_key_pressed
 
     return unless defined $suggestions;
 
+    # add color to the misspelled word
     my $color = Irssi::settings_get_str('spellcheck_word_input_color');
     if ($color && Irssi->can('gui_input_set_extents')) {
         Irssi::gui_input_set_extents($start, length $word, $color, '%n');
