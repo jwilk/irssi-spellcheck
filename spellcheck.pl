@@ -152,7 +152,7 @@ sub spellcheck_key_pressed
     }
 
     # ensure that newly added characters are not colored
-    # when correcting a colored wored
+    # when correcting a colored word
     # FIXME: this works at EOL, but not elsewhere
     if (Irssi->can('gui_input_set_extent')) {
         Irssi::gui_input_set_extent(length $inputline, '%n');
