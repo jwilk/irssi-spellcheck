@@ -48,7 +48,9 @@ gzip='gzip -9 -n'
 git archive "$commit" --prefix="$name-$version/" | tar -C "$sourceroot" -xf -
 cd "$sourceroot"/*
 rm .travis.yml
-mv README.rst doc/README
+rm doc/README
+sed -e '/<git>/,/<\/git>/d' < README.rst > doc/README
+rm README.rst
 mv COPYING doc/
 rm private/build-source-tarball
 cd ..
