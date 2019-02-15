@@ -170,7 +170,7 @@ sub spellcheck_key_pressed
     return if ($inputline =~ $re);
 
     # get last bit from the inputline
-    my ($word) = $inputline =~ /\s*(\S+)[.\s]*$/;
+    my ($word) = $inputline =~ /\s*(\S+)\s*$/;
     defined $word or return;
 
     # remove color from the last word
