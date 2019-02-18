@@ -147,7 +147,8 @@ sub spellcheck_key_pressed
 
     # get current inputline
     my $inputline = Irssi::parse_special('$L');
-    if (lc Irssi::settings_get_str('term_charset') eq 'utf-8') {
+    my $utf8 = lc Irssi::settings_get_str('term_charset') eq 'utf-8';
+    if ($utf8) {
         Encode::_utf8_on($inputline);
     }
 
@@ -216,6 +217,9 @@ sub spellcheck_key_pressed
     $word =~ s/%/%%/g;
     $color = Irssi::settings_get_str('spellcheck_word_color');
     if (scalar @$suggestions > 0) {
+        if ($utf8) {
+            Encode::_utf8_on($_) for @$suggestions;
+        }
         $correction_window->print("Suggestions for $color$word%N - " . join(', ', @$suggestions));
     } else {
         $correction_window->print("No suggestions for $color$word%N");
