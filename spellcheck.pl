@@ -232,6 +232,8 @@ sub spellcheck_complete_word
 
     my $lang = spellcheck_find_language($win);
 
+    return if $lang eq 'und';
+
     # add suggestions to the completion list
     my $suggestions = spellcheck_check_word($lang, $word, 1);
     push(@$complist, @$suggestions) if defined $suggestions;
