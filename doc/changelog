@@ -5,12 +5,14 @@ irssi-spellcheck (0.9) UNRELEASED; urgency=low
   * Activate main window after showing correction window.
   * Add word colouring in the input prompt.
 
-  [ Jakub Wilk]
+  [ Jakub Wilk ]
   * Fix handling unusual command characters.
   * Fix wording and formatting in README.
   * Strip punctuation around the misspelled word when printing corrections.
+  * Disable spell-completion for the “und” language.
+  * Make “?” and “!” trigger spell-checking.
 
- -- Jakub Wilk <jwilk@jwilk.net>  Fri, 15 Feb 2019 18:26:29 +0100
+ -- Jakub Wilk <jwilk@jwilk.net>  Mon, 18 Feb 2019 19:29:07 +0100
 
 irssi-spellcheck (0.8) unstable; urgency=low
 
