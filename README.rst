@@ -122,9 +122,9 @@ Known issues:
 
 * Picking actual words from what you type is very kludgy, you may
   occasionally see some leftovers like digits or punctuation
-* Works every time you press space or a dot (so won't work for the last
-  word before pressing enter, unless you're using dot to finish your
-  sentences).
+* Works every time you press space or an end mark (``.``, ``!`` or
+  ``?``). It won't work for the last word before pressing enter unless
+  you're using proper punctuation at the end of your sentences.
 * When you press space and realize that the word is wrong, you can't
   tab-complete to the suggestions right away — you need to use backspace
   and then tab-complete. With dot you get an extra space after

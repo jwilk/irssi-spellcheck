@@ -158,8 +158,9 @@ sub spellcheck_key_pressed
         Irssi::gui_input_set_extent(length $inputline, '%n');
     }
 
-    # don't bother unless pressed key is space or dot
-    return unless (chr $key eq ' ' or chr $key eq '.');
+    # don't bother unless pressed key is space
+    # or a terminal punctuation mark
+    return unless grep { chr $key eq $_ } (' ', qw(. ? !));
 
     $inputline = substr $inputline, 0, Irssi::gui_input_get_pos();
 
