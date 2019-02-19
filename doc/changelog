@@ -1,4 +1,4 @@
-irssi-spellcheck (0.9) UNRELEASED; urgency=low
+irssi-spellcheck (0.9) unstable; urgency=low
 
   [ Nei ]
   * Hide correction window manipulation messages.
@@ -12,7 +12,7 @@ irssi-spellcheck (0.9) UNRELEASED; urgency=low
   * Disable spell-completion for the “und” language.
   * Make “?” and “!” trigger spell-checking.
 
- -- Jakub Wilk <jwilk@jwilk.net>  Mon, 18 Feb 2019 19:29:07 +0100
+ -- Jakub Wilk <jwilk@jwilk.net>  Tue, 19 Feb 2019 18:11:57 +0100
 
 irssi-spellcheck (0.8) unstable; urgency=low
 
