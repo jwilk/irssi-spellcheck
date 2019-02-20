@@ -8,12 +8,18 @@ addons:
     packages:
     - libaspell-dev
 install:
-- python -m pip install --user restructuredtext-lint
 - export PERL_CPANM_OPT='--no-interactive --no-man-pages --notest --skip-satisfied'
 - cpanm Text::Aspell
 script:
-- dpkg-parsechangelog -ldoc/changelog --all 2>&1 >/dev/null | { ! grep .; }
-- restructuredtext-lint --encoding=UTF-8 README.rst
 - prove --verbose
+jobs:
+  include:
+  - perl: null
+    addons: []
+    install:
+    - python -m pip install --user restructuredtext-lint
+    script:
+    - dpkg-parsechangelog -ldoc/changelog --all 2>&1 >/dev/null | { ! grep .; }
+    - restructuredtext-lint --encoding=UTF-8 README.rst
 
 # vim:ts=2 sts=2 sw=2 et
