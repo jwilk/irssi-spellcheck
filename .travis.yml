@@ -18,8 +18,10 @@ jobs:
     addons: []
     install:
     - python -m pip install --user restructuredtext-lint
+    - python -m pip install --user html5validator
     script:
     - dpkg-parsechangelog -ldoc/changelog --all 2>&1 >/dev/null | { ! grep .; }
     - restructuredtext-lint --encoding=UTF-8 README.rst
+    - html5validator --svg doc/*.svg
 
 # vim:ts=2 sts=2 sw=2 et
