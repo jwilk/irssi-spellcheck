@@ -7,8 +7,9 @@ addons:
   apt:
     packages:
     - libaspell-dev
-install:
+before_install:
 - export PERL_CPANM_OPT='--no-interactive --no-man-pages --notest --skip-satisfied'
+install:
 - cpanm Text::Aspell
 script:
 - prove --verbose
