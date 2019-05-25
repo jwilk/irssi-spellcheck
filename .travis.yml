@@ -1,8 +1,5 @@
 dist: trusty
 language: perl
-perl:
-- "5.10"
-- "5.28"
 addons:
   apt:
     packages:
@@ -15,6 +12,8 @@ script:
 - prove --verbose
 jobs:
   include:
+  - perl: "5.10"
+  - perl: "5.28"
   - perl: null
     addons: []
     install:
