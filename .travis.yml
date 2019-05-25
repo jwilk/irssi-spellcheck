@@ -1,4 +1,4 @@
-dist: trusty
+dist: xenial
 language: perl
 addons:
   apt:
@@ -13,6 +13,7 @@ script:
 jobs:
   include:
   - perl: "5.10"
+    dist: trusty
   - perl: "5.28"
   - perl: null
     addons: []
