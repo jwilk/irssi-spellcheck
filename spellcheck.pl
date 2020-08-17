@@ -167,9 +167,13 @@ sub spellcheck_key_pressed
 
     # check if inputline starts with any of cmdchars
     # we shouldn't spell-check commands
+    # (except /SAY and /ME)
     my $cmdchars = Irssi::settings_get_str('cmdchars');
-    my $re = qr/^[\Q$cmdchars\E]/;
-    return if ($inputline =~ $re);
+    my $re = qr{^(?:
+        [\Q$cmdchars\E] (?i: say | me ) \s* \S |
+        [^\Q$cmdchars\E]
+    )}x;
+    return if ($inputline !~ $re);
 
     # get last bit from the inputline
     my ($word) = $inputline =~ /\s*(\S+)\s*$/;
