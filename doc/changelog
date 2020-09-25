@@ -1,8 +1,8 @@
-irssi-spellcheck (0.9.1) UNRELEASED; urgency=low
+irssi-spellcheck (0.9.1) unstable; urgency=low
 
   * Spell-check /SAY and /ME commands.
 
- -- Jakub Wilk <jwilk@jwilk.net>  Fri, 25 Sep 2020 20:37:46 +0200
+ -- Jakub Wilk <jwilk@jwilk.net>  Fri, 25 Sep 2020 20:38:22 +0200
 
 irssi-spellcheck (0.9) unstable; urgency=low
 
