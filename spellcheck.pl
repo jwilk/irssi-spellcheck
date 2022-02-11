@@ -26,7 +26,7 @@ $VERSION = '0.9.1';
     name        => 'spellcheck',
     description => 'checks for spelling errors using Aspell',
     license     => 'GPLv2',
-    url         => 'http://jwilk.net/software/irssi-spellcheck',
+    url         => 'https://jwilk.net/software/irssi-spellcheck',
 );
 
 my %speller;
