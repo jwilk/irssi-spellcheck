@@ -16,8 +16,9 @@ jobs:
       run: |
         perl --version
     - name: apt install deps
-      run: |
-        sudo apt-get install libtext-aspell-perl
+      run:
+        sudo apt-get install --no-install-recommends
+          libtext-aspell-perl
     - name: run tests
       run: |
         prove --verbose
