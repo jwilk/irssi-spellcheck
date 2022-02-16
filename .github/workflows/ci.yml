@@ -15,9 +15,13 @@ jobs:
     - name: check Perl version
       run: |
         perl --version
+    - name: set up APT
+      run: |
+        printf 'Apt::Install-Recommends "false";\n' | sudo tee -a /etc/apt/apt.conf
+        sudo apt-get update
     - name: apt install deps
       run:
-        sudo apt-get install --no-install-recommends
+        sudo apt-get install
           libtext-aspell-perl
     - name: run tests
       run: |
