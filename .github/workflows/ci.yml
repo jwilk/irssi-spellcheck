@@ -36,7 +36,7 @@ jobs:
     - name: check README syntax
       run: |
         python -m pip install restructuredtext-lint
-        rst-lint --level=info --encoding=UTF-8 README
+        rst-lint --level=info --encoding=UTF-8 doc/README
     - name: check SVG syntax
       run: |
         python -m pip install html5validator
