@@ -48,7 +48,6 @@ gzip='gzip -9 -n'
 git archive "$commit" --prefix="$name-$version/" | tar -C "$sourceroot" -xf -
 cd "$sourceroot"/*
 rm -r .git*
-rm .travis.yml
 rm doc/README
 sed -e '/<git>/,/<\/git>/d' < README.rst > doc/README
 rm README.rst
