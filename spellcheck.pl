@@ -20,7 +20,7 @@ use Irssi::TextUI;
 use Encode;
 use Text::Aspell;
 
-$VERSION = '0.9.1';
+$VERSION = '0.9.2';
 %IRSSI = (
     authors     => 'Jakub Wilk, Jakub Jankowski, Gabriel Pettier, Nei',
     name        => 'spellcheck',
