@@ -43,6 +43,11 @@ sub spellcheck_setup
     return $speller;
 }
 
+# leading/trailing punctuation and control characters
+# (including formatting characters, such as ^B)
+# should be stripped before spell-checking the word
+my $ignorables = qr/[[:punct:][:cntrl:]]/;
+
 # add_rest means "add (whatever you chopped from the word before
 # spell-checking it) to the suggestions returned"
 sub spellcheck_check_word
@@ -62,9 +67,9 @@ sub spellcheck_check_word
     }
 
     return if $word =~ m{^/}; # looks like a path
-    $word =~ s/^([[:punct:]]*)//; # strip leading punctuation characters
+    $word =~ s/^($ignorables*)//; # strip leading punctuation and control chars
     $prefix = $1 if $add_rest;
-    $word =~ s/([[:punct:]]*)$//; # ...and trailing ones, too
+    $word =~ s/($ignorables*)$//; # ...and trailing ones, too
     $suffix = $1 if $add_rest;
     return if $word =~ m{^\w+://}; # looks like a URL
     return if $word =~ m{^[^@]+@[^@]+$}; # looks like an e-mail
@@ -194,9 +199,9 @@ sub spellcheck_key_pressed
 
     return unless defined $suggestions;
 
-    # strip leading and trailing punctuation
-    $word =~ s/^([[:punct:]]+)// and $start += length $1;
-    $word =~ s/[[:punct:]]+$//;
+    # strip leading and trailing punctuation and control chars
+    $word =~ s/^($ignorables+)// and $start += length $1;
+    $word =~ s/$ignorables+$//;
 
     # add color to the misspelled word
     my $color = Irssi::settings_get_str('spellcheck_word_input_color');
