@@ -1,4 +1,4 @@
-irssi-spellcheck (0.9.2) UNRELEASED; urgency=low
+irssi-spellcheck (0.9.2) unstable; urgency=low
 
   * Strip leading/trailing control characters (including formatting
     characters, such as ^B) before spell-checking.
@@ -7,7 +7,7 @@ irssi-spellcheck (0.9.2) UNRELEASED; urgency=low
     + Use HTTPS for jwilk.net.
     + Update metacpan.org URL.
 
- -- Jakub Wilk <jwilk@jwilk.net>  Fri, 09 Feb 2024 17:42:09 +0100
+ -- Jakub Wilk <jwilk@jwilk.net>  Fri, 09 Feb 2024 21:50:43 +0100
 
 irssi-spellcheck (0.9.1) unstable; urgency=low
 
